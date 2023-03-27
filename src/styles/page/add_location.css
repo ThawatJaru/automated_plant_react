@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    padding: 5%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.pos_back_btn {
+    display: flex;
+    align-items: center;
+}
+
+.btn_back {
+    width: 91px;
+    height: 31px;
+    background-color: #9B7DBF;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+h1 {
+    color: black;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.pos_text_back{
+    padding-left: 10px;
+}
+
+.container_all {
+    display: grid;
+}
+.big_container{
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.container_loc_name {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.container_cap {
+    padding-top: 30px;
+}
+
+.style_loc_name {
+    color: #5B5B5B;
+    font-size: 18px;
+}
+
+.pos_input_loc{
+    padding-top: 20px;
+}
+
+.cap_add{
+    font-size: 20px;
+    font-weight: 200px;
+    color: #C2BDBD;
+    border-radius: 20px;
+    border-color: #BA5DF3;
+    border-style: solid;
+    background-color: white;
+    width: 82px;
+    height: 50px;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 15px;
+    border-width: 2px;
+}
+
+.loc_name_add {
+    font-size: 20px;
+    font-weight: 200px;
+    color: #C2BDBD;
+    border-radius: 20px;
+    border-color: #BA5DF3;
+    border-style: solid;
+    border-width: 2px;
+    background-color: white;
+    width: 403px;
+    height: 50px;
+    padding-left: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.pos_slots_text{
+    padding-left: 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: 300px;
+}
+
+.loc_description_add{
+    font-size: 20px;
+    font-weight: 200px;
+    color: #C2BDBD;
+    border-radius: 50px;
+    border-color: #BA5DF3;
+    border-style: solid;
+    background-color: white;
+    width: 760px;
+    height: 203px;
+    padding-left: 30px;
+    padding-top: 20px;
+    border-width: 2px;
+    font-family: 'Poppins', sans-serif;
+}
+.btn_submit{
+    background-color: #905DCC;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    width: 140px;
+    height: 50px;
+}
+
+.pos_btn_submit{
+    position: absolute;
+    bottom: 60px;
+    right: 50px;
+}

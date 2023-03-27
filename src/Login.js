@@ -1,13 +1,13 @@
-import './styles/page/login.css'
+import './styles/page/login.css';
 
-function App() {
+function Login() {
   return (
     <>
       <div className="pos_login">
         <h1>Login</h1>
       </div>
       <div className="pos_plant_logo">
-        <img src="/img/plant_logo.svg" alt="" width="190" height="198" className="pos_img"/>
+        <img src="/img/plant_logo.svg" alt="" width="190" height="198" className="pos_img" />
       </div>
 
       <div className="container_all">
@@ -21,7 +21,7 @@ function App() {
         </div>
         <div className="container_items_right">
           <div className="pos_input_user">
-            <input type="text" placeholder="Username" className="input_username"/>
+            <input type="text" placeholder="Username" className="input_username" />
           </div>
         </div>
       </div>
@@ -37,18 +37,20 @@ function App() {
         </div>
         <div className="container_items_right">
           <div className="pos_input_pass">
-            <input type="text" placeholder="Password" className="input_password"/>
+            <input type="text" placeholder="Password" className="input_password" />
           </div>
         </div>
       </div>
 
-      <div className="pos_btn_login">
-        <button className="btn_login">
-          Login
-        </button>
-      </div>
+      <a href="/Location.js">
+        <div className="pos_btn_login">
+          <button className="btn_login">
+            Login
+          </button>
+        </div>
+      </a>
     </>
   );
 }
 
-export default App;
+export default Login;
