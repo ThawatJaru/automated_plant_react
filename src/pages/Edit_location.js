@@ -1,10 +1,8 @@
-import './styles/page/edit_location.css';
-
 function Edit_location() {
     return (
         <>
             <body>
-                <a href="/Choose_location.html">
+                <a href="/machine_location">
                     <div classname="pos_back_btn">
                         <button classname="btn_back">
                             <div classname>

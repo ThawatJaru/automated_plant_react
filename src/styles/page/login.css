@@ -1,4 +1,4 @@
-body{
+.login_body{
     font-family: 'Poppins', sans-serif;
     align-items: center; 
     /* display: table-cell;
@@ -6,8 +6,8 @@ body{
     margin: 0 auto;
 }
 
-h1{
-    font-size: 48px;
+.login_text{
+  font-size: 48px;
     font-weight: bold;
     color: black;
     text-align: center;
@@ -23,20 +23,20 @@ h1{
     text-align: center;
   }
   
-  .container_all {
+  .container_all_login {
     display: flex;
     gap: 1em;
     justify-content: center;
     padding: 15px 0px;
   }
   
-  .container_items_left {
+  .container_items_left_login {
     display: flex;
     gap: 30px;
     align-items: center;
   }
   
-  .container_items_right {
+  .container_items_right_login {
     display: flex;
     gap: 30px;
     align-items: center;
@@ -103,4 +103,5 @@ h1{
     width: 224px;
     height: 80px;
   }
+
   
