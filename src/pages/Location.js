@@ -37,10 +37,12 @@ function Location() {
             </div>
           </div>
           <div className="location_container_items_right">
+            <a href = "/home_admin">
             <button className="btn_submit">
               Select
             </button>
-            <a href="/Edit_location.html">
+            </a>
+            <a href="/edit_location">
               <button className="btn_edit">
                 Edit
               </button>

@@ -1,64 +1,64 @@
 function Edit_location() {
     return (
         <>
-            <body>
-                <a href="/machine_location">
-                    <div classname="pos_back_btn">
-                        <button classname="btn_back">
-                            <div classname>
+            <body className = "body_edit_location">
+                <a href="/machine_location" className = "edit_location_a">
+                    <div className="pos_back_btn_edit_location">
+                        <button className="btn_back_edit_location">
+                            <div className>
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
                             </div>
-                            <div classname="pos_text_back">
+                            <div className="pos_text_back">
                                 Back
                             </div>
                         </button>
                     </div>
                 </a>
 
-                <h1>
+                <h1 className = "edit_location_text">
                     Edit your machine's location
                 </h1>
 
-                <div classname="big_container">
-                    <div classname="container_loc_name">
-                        <div classname="style_loc_name">
+                <div className="big_container_edit_location">
+                    <div className="container_loc_name_edit_location">
+                        <div className="style_loc_name_edit_location">
                             Location Name *
                         </div>
-                        <div classname="pos_input_loc">
-                            <input type="text" placeholder="Name" classname="loc_name_add" />
+                        <div className="pos_input_loc_edit_location">
+                            <input type="text" placeholder="Name" className="loc_name_add_edit_location" />
                         </div>
                     </div>
-                    <div classname="container_cap">
-                        <div classname="style_loc_name">
+                    <div className="container_cap_edit_location">
+                        <div className="style_loc_name_edit_location">
                             Capacity *
                         </div>
-                        <div classname="pos_input_loc">
-                            <input type="text" placeholder="3" classname="cap_add" />
-                            <i classname="pos_slots_text">Slots</i>
+                        <div className="pos_input_loc_edit_location">
+                            <input type="text" placeholder="3" className="cap_add_edit_location" />
+                            <i className="pos_slots_text_edit_location">Slots</i>
                         </div>
                     </div>
                 </div>
 
-                <div classname="big_container">
-                    <div classname="container_loc_name">
-                        <div classname="style_loc_name">
+                <div className="big_container_edit_location">
+                    <div className="container_loc_name_edit_location">
+                        <div className="style_loc_name_edit_location">
                             Location Description (Optional)
                         </div>
-                        <div classname="pos_input_loc">
+                        <div className="pos_input_loc_edit_location">
                             <textarea
                                 name=""
                                 id=""
                                 cols="30"
                                 rows="10"
                                 placeholder="Description.."
-                                classname="loc_description_add"
+                                className="loc_description_add_edit_location"
                             ></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div classname="pos_btn_submit">
-                    <button classname="btn_submit">
+                <div className="pos_btn_submit_edit_location">
+                    <button className="btn_submit_edit_location">
                         Submit
                     </button>
                 </div>

@@ -51,6 +51,7 @@
 .style_loc_name_add_location {
     color: #5B5B5B;
     font-size: 18px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .pos_input_loc_add_location{
@@ -95,7 +96,7 @@
     font-weight: 300px;
 }
 
-.loc_description_add_add_location{
+.loc_description_add_location{
     font-size: 20px;
     font-weight: 200px;
     color: #C2BDBD;
