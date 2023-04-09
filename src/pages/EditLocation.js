@@ -1,4 +1,4 @@
-function Edit_location() {
+function EditLocation() {
     return (
         <>
             <body className = "body_edit_location">
@@ -67,4 +67,4 @@ function Edit_location() {
     );
 }
 
-export default Edit_location;
+export default EditLocation;
