@@ -3,10 +3,18 @@ body {
   /* display: table-cell;
     vertical-align:middle; */
   margin: 0 auto;
+  padding:3%;
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+h2 {
+  font-size: 32px;
   font-weight: bold;
   color: black;
   text-align: center;
