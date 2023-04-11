@@ -26,14 +26,7 @@ $py-6	: 1.5rem 0;
 // border radius
 $rounded-xl: 20px;
 $rounded-lg: 20px;
-$rounded-md: 20px;
-$rounded-full: 100%;
+$rounded-md: 8px;
+$rounded-full: 50px;
 
 
-
-:local {
-  .myClass {
-    color: $color-purple-light;
-    padding: $py-1;
-  }
-}

@@ -1,14 +1,31 @@
-body{
-    font-family: 'Poppins', sans-serif;
-    /* display: table-cell;
+body {
+  font-family: "Poppins", sans-serif;
+  /* display: table-cell;
     vertical-align:middle; */
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
-h1{
-    font-size: 48px;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-    margin: 0;
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
 }

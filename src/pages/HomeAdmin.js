@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '../styles/sass/pages/homeAdmin.module.scss'
+import FilterBar from '../components/items/filterBar'
+import ProductList from '../components/products/productList'
 const HomeAdmin = () => {
     return (
         <>
@@ -76,15 +78,21 @@ const HomeAdmin = () => {
                             />
                         </div>
                     </div>
-                    <div className={styles.box_menu_item} style={{fontWeight:"bold"}}>
+                    <div className={styles.box_menu_item} style={{ fontWeight: "bold" }}>
                         All
                     </div>
-                    <div className={styles.box_menu_item} style={{fontWeight:"bold"}}>
+                    <div className={styles.box_menu_item} style={{ fontWeight: "bold" }}>
                         Indoor
                     </div>
-                    <div className={styles.box_menu_item} style={{fontWeight:"bold"}}>
+                    <div className={styles.box_menu_item} style={{ fontWeight: "bold" }}>
                         Outdoor
                     </div>
+                </div>
+                <div>
+                    <FilterBar title={"List of the plants"} />
+                </div>
+                <div>
+                    <ProductList />
                 </div>
             </body>
         </>
