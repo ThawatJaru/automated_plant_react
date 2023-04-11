@@ -11,13 +11,14 @@ const ProductCard = ({ status }) => {
         display: "flex",
         flexDirection: "column",
         gap: "5px"
-      }}>        <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }}
-      >
+      }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center"
+          }}
+        >
           <img src="/img/icon/icon_indoor.svg" alt="" width={30} />
           <div>
             {!status ? (

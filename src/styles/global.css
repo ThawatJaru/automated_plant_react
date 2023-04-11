@@ -3,7 +3,7 @@ body {
   /* display: table-cell;
     vertical-align:middle; */
   margin: 0 auto;
-  padding:3%;
+  padding: 3%;
 }
 
 h1 {
@@ -36,4 +36,35 @@ button {
 
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
+}
+
+.text_red {
+  color: #e12b2b;
+}
+.italic {
+  font-style: italic;
+}
+.my_gray_checkbox {
+  background-color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  border: 2px solid #d9d9d9;
+}
+.my_gray_checkbox_active {
+  background-color: #9b7dbf;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  border: 2px solid black;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+.flex_center {
+  display: flex;
+  align-items: center;
 }

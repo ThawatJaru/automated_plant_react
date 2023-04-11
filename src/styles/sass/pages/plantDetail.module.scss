@@ -1,0 +1,85 @@
+@import "../global.module.scss";
+
+
+.sku {
+  background-color: white;
+  font-weight: bold;
+  width: fit-content;
+  padding: $p-1 $p-3;
+  border-radius: $rounded-xl;
+  font-size: 18px;
+}
+
+.box_image {
+  background-color: $color-gray;
+  max-width: 260px;
+  border-radius: $rounded-xl;
+  padding: $p-3;
+  text-align: center;
+}
+
+.but_unlock {
+  width: 91px;
+  height: 31px;
+  background-color: $color-purple-fade;
+  border-radius: 50px;
+  color: white;
+}
+
+.but_ready {
+  width: 178px;
+  height: 48px;
+  background: #FFFFFF;
+  border: 1px solid $color-purple-fade;
+  border-radius: 30px;
+  color: $color-purple-fade;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.but_apply {
+  position: absolute;
+  bottom: 0px;
+  width: 133px;
+  height: 46px;
+  background-color: $color-purple;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 0 auto;
+  font-size: 20px;
+  border-radius: $rounded-full;
+  left: 25%;
+}
+
+.checkbox_list_item {
+  color: #808080;
+  display: flex;
+  gap: 10px;
+}
+.box_detail{
+  background-color: $color-purple-bg;
+  padding: $p-6;
+  padding-left: 50px;
+  border-radius: 70px 0 0 70px;
+  position: relative;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  right: -35px;
+}
+.text_date{
+  margin-top: 10px;
+  border: 1px solid $color-purple;
+  width: fit-content;
+  padding: $p-1 $p-3;
+  border-radius: $rounded-full;
+  color: $color-purple-dark;
+}

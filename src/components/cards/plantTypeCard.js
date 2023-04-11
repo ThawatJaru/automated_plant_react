@@ -30,6 +30,7 @@ const PlantTypeCard = () => {
           justifyContent:"end",
           gap:"5px",
           marginTop:"10px",
+          maxWidth:"300px"
         }}
       >
         <button className={styles.but_edit}>Edit</button>
