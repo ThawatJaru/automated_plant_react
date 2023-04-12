@@ -12,7 +12,7 @@ const LocationItem = ({ data }) => {
             {data.name}
           </div>
           <div className="slots_service">
-            {data.description}
+          In Service: {data.capacity} slots
           </div>
         </div>
       </div>

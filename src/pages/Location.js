@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 
 function Location() {
   const [data, setData] = useState()
+
   const onGetData = async () => {
     const res = await getAllMachine("00000000-0000-4000-8000-000000000000")
     if (res) {
