@@ -1,3 +1,17 @@
+:root {
+  --color-purple: #905dcc;
+  --color-purple-light: #b253ed;
+  --color-purple-dark: #5c3886;
+  --color-purple-fade: #9b7dbf;
+  --color-purple-bg: #e9dcf8;
+  --color-green: #37a483;
+  --color-green-light: #e4f7d7;
+  --color-red: #e12b2b;
+  --color-red-dark: #990000;
+  --color-gray: #d9d9d9;
+  --color-gray-light: #f5f5f5;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   /* display: table-cell;
@@ -10,14 +24,12 @@ h1 {
   font-size: 40px;
   font-weight: bold;
   color: black;
-  text-align: center;
   margin: 0;
 }
 h2 {
   font-size: 32px;
   font-weight: bold;
   color: black;
-  text-align: center;
   margin: 0;
 }
 
@@ -31,8 +43,7 @@ button {
   height: 3px;
 }
 
-::-webkit-scrollbar-track {
-}
+
 
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
@@ -67,4 +78,31 @@ li {
 .flex_center {
   display: flex;
   align-items: center;
+}
+
+input[type="file"] {
+  opacity: 0; /* make transparent */
+  z-index: -1; /* move under anything else */
+  position: absolute; /* don't let it take up space */
+}
+
+input {
+  outline: none;
+}
+
+.asterisk:after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
+}
+.mt_10 {
+  margin-top: 20px;
+}
+
+.text_lg {
+  font-size: 20px;
+}
+
+.text_purple {
+  color: var(--color-purple);
 }

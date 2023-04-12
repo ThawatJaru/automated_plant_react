@@ -86,7 +86,7 @@ const PlantDetailPage = () => {
                   </div>
                 </li>
                 <li className={styles.checkbox_list_item}>
-                  <div className='my_gray_checkbox_active' />
+                  <img src='/img/icon/icon_checkbox_active.svg' alt='' width={22} />
                   <div>
                     <strong>ready</strong>
                     <div>{`(ready to be sold)`}</div>

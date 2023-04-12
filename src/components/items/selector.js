@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../../styles/sass/components/items/selector.module.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
-const Selector = ({ options, title }) => {
+const Selector = ({ options, title, type }) => {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState({
     value: "",
@@ -9,7 +9,13 @@ const Selector = ({ options, title }) => {
   })
   return (
     <div>
-      <div className={styles.box} onClick={() => setOpen(!open)}>
+      <div className={styles.box} onClick={() => setOpen(!open)}
+        style={{
+          border: type === "from" ? '3px solid #B253ED':"",
+          borderRadius:type === "from" ? '20px':"",
+          padding:type === "from" ? '15px':"",
+        }}
+      >
         <div>{selected.value ? selected.label : title}</div>
         <MdKeyboardArrowDown size={25} />
         {open && options ? (

@@ -5,6 +5,7 @@ import HomeAdmin from './pages/HomeAdmin.js';
 import AddLocation from './pages/AddLocation.js'
 import ViewPlantType from './pages/ViewPlantType.js';
 import PlantDetailPage from './pages/plant/[id].js';
+import AddPlant from './pages/addPlant.js';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path='/home-admin' element={<HomeAdmin />} />
                 <Route path='/view-plant-type' element={<ViewPlantType />} />
                 <Route path='/plant/:id' element={<PlantDetailPage />} />
+                <Route path='/add-plant' element={<AddPlant />} />
             </Routes>
         </>
     )
