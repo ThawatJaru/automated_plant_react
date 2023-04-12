@@ -6,6 +6,7 @@ import AddLocation from './pages/AddLocation.js'
 import ViewPlantType from './pages/ViewPlantType.js';
 import PlantDetailPage from './pages/plant/[id].js';
 import AddPlant from './pages/addPlant.js';
+import Location from './pages/Location.js';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <>
             <Routes>
                 <Route path='/' element={<Login />} />
+                <Route path='/machine-location' element = {<Location/>}/>
                 <Route path='/add-location' element={<AddLocation />} />
                 <Route path='/edit-location' element={<EditLocation />} />
                 <Route path='/home-admin' element={<HomeAdmin />} />
