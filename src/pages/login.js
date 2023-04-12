@@ -44,7 +44,7 @@ function Login() {
       <a href="/machine_location">
         <div className="pos_btn_login">
           <button className="btn_login">
-            Loginss
+            Login
           </button>
         </div>
       </a>
