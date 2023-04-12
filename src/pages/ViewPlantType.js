@@ -10,14 +10,14 @@ const ViewPlantType = () => {
         <div style={{
           gridColumn: 'span 2 / span 2',
         }} >
-          <button className="btn_back_edit_location">
-            <div className>
-              <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
-            </div>
-            <div className="pos_text_back">
-              Back
-            </div>
-          </button>
+          <a href='/machine-location'  className="btn_back_edit_location">
+        <div>
+          <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
+        </div>
+        <div className="pos_text_back">
+          Back
+        </div>
+      </a>
         </div>
         <div
           style={{

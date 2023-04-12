@@ -90,7 +90,11 @@ const HomeAdmin = () => {
             <div>
                 <FilterBar title={"List of the plants"} />
             </div>
-            <div>
+            <div 
+                style={{
+                    marginTop:"20px"
+                }}
+            >
                 <ProductList />
             </div>
         </>

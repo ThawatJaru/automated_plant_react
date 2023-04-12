@@ -1,21 +1,17 @@
 function EditLocation() {
     return (
         <>
-            <body className = "body_edit_location">
-                <a href="/machine_location" className = "edit_location_a">
-                    <div className="pos_back_btn_edit_location">
-                        <button className="btn_back_edit_location">
-                            <div className>
-                                <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
-                            </div>
-                            <div className="pos_text_back">
-                                Back
-                            </div>
-                        </button>
+            <body className="body_edit_location">
+                <a href='/machine-location' className="btn_back_edit_location">
+                    <div>
+                        <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
+                    </div>
+                    <div className="pos_text_back">
+                        Back
                     </div>
                 </a>
 
-                <h1 className = "edit_location_text">
+                <h1 className="edit_location_text">
                     Edit your machine's location
                 </h1>
 

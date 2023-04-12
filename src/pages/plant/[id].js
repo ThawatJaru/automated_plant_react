@@ -4,16 +4,16 @@ import styles from '../../styles/sass/pages/plantDetail.module.scss'
 const PlantDetailPage = () => {
   return (
     <div >
-      <button className="btn_back_edit_location">
-        <div className>
+      <a href='/machine-location'  className="btn_back_edit_location">
+        <div>
           <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
         </div>
         <div className="pos_text_back">
           Back
         </div>
-      </button>
+      </a>
       <div>
-        <h2>---  Plant State  ---</h2>
+        <h2 style={{textAlign:"center"}} >---  Plant State  ---</h2>
         <div
           style={{
             display: 'grid',

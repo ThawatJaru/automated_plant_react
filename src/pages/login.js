@@ -12,7 +12,7 @@ function Login() {
     massage: ""
   })
   const onLogin = async (data) => {
-    if (!dataForm.username) {
+    if (!dataForm.username || !dataForm.password) {
       setError({
         status: true,
         massage: "something went wrong"
@@ -37,10 +37,10 @@ function Login() {
         <img src="/img/plant_logo.svg" alt="" width="190" height="198" className="pos_img" />
       </div>
       {/* error massage */}
-      <div 
+      <div
         style={{
-          color:"red",
-          textAlign:"center",
+          color: "red",
+          textAlign: "center",
         }}
       >
         {error.status && error.massage}
