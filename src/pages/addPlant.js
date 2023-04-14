@@ -10,7 +10,7 @@ const AddPlant = () => {
         position: 'relative',
       }}
     >
-      <a href='/machine-location' className="btn_back_edit_location">
+      <a href='/home-admin' className="btn_back_edit_location">
         <div>
           <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
         </div>
