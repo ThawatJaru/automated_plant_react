@@ -17,12 +17,12 @@ const LocationItem = ({ data }) => {
         </div>
       </div>
       <div className="location_container_items_right">
-        <a href="/home_admin">
+        <a href="/home-admin">
           <button className="btn_submit">
             Select
           </button>
         </a>
-        <a href="/edit_location">
+        <a href="/edit-location">
           <button className="btn_edit">
             Edit
           </button>
