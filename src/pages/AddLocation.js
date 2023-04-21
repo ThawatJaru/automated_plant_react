@@ -56,7 +56,7 @@ const AddLocation = () => {
                             Capacity *
                         </div>
                         <div className="pos_input_loc_add_location">
-                            <input type="text" placeholder="3" className="cap_add_add_location" name="capacity" value={dataForm.capacity} />
+                            <input type="number" placeholder="3" className="cap_add_add_location" name="capacity" value={dataForm.capacity} />
                             <i className="pos_slots_text_add_location">Slots</i>
                         </div>
                     </div>
