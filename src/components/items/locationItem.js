@@ -1,6 +1,12 @@
 import React from 'react'
+import { deleteMachine } from '../../services/api/machines'
 
 const LocationItem = ({ data }) => {
+
+  const onDelete = async (id) => {
+    await deleteMachine('00000000-0000-4000-8000-000000000000', id)
+    window.location.reload()
+  }
   return (
     <div className="location_container_all">
       <div className="location_container_items_left">
@@ -12,7 +18,7 @@ const LocationItem = ({ data }) => {
             {data.name}
           </div>
           <div className="slots_service">
-          In Service: {data.capacity} slots
+            In Service: {data.capacity} slots
           </div>
         </div>
       </div>
@@ -27,7 +33,7 @@ const LocationItem = ({ data }) => {
             Edit
           </button>
         </a>
-        <button className="btn_remove">
+        <button className="btn_remove" onClick={() => onDelete(data.id)}>
           <img src="img/icon/icon_bin.svg" alt="" width="20" height="20" />
         </button>
       </div>
