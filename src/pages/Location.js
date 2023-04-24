@@ -1,14 +1,19 @@
+import { Link } from "react-router-dom";
+import { AppContext } from "../appState/store";
 import LocationItem from "../components/items/locationItem";
 import { getAllMachine, searchMachine } from "../services/api/machines";
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext} from "react"
 
 function Location() {
   const [data, setData] = useState()
   const [loading, setLoading] = useState(false)
   const [textSearch, setTextSearch] = useState("")
+  const { user } = useContext(AppContext)
+
   const onGetData = async () => {
+    console.log("get data")
     setLoading(true)
-    const res = await getAllMachine("00000000-0000-4000-8000-000000000000")
+    const res = await getAllMachine(user.id)
     if (res) {
       setData(res.data)
       setLoading(false)
@@ -17,7 +22,7 @@ function Location() {
 
   const onSearchedData = async () => {
     setLoading(true)
-    const res = await searchMachine("00000000-0000-4000-8000-000000000000", textSearch)
+    const res = await searchMachine(user.id, textSearch)
     if (res) {
       setData(res.data)
       setLoading(false)
@@ -25,8 +30,10 @@ function Location() {
   }
 
   useEffect(() => {
-    onGetData()
-  }, [])
+    if(user){
+      onGetData()
+    }
+  }, [user])
 
 
   return (
@@ -75,13 +82,13 @@ function Location() {
         )}
       </div>
 
-      <a href="/add-location">
+      <Link to="/add-location">
         <div className="pos_plus_btn">
           <button className="btn_add">
             <img src="img/icon/icon_plus.svg" alt="" width="40" height="40" />
           </button>
         </div>
-      </a>
+      </Link>
     </>
   );
 }

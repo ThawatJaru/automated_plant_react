@@ -1,5 +1,6 @@
 import React from 'react'
 import { deleteMachine } from '../../services/api/machines'
+import { Link } from 'react-router-dom'
 
 const LocationItem = ({ data }) => {
 
@@ -23,16 +24,16 @@ const LocationItem = ({ data }) => {
         </div>
       </div>
       <div className="location_container_items_right">
-        <a href="/home-admin">
+        <Link to="/home-admin">
           <button className="btn_submit">
             Select
           </button>
-        </a>
-        <a href="/edit-location">
+        </Link>
+        <Link to="/edit-location">
           <button className="btn_edit">
             Edit
           </button>
-        </a>
+        </Link>
         <button className="btn_remove" onClick={() => onDelete(data.id)}>
           <img src="img/icon/icon_bin.svg" alt="" width="20" height="20" />
         </button>
