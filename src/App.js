@@ -16,7 +16,7 @@ function App() {
     useEffect(() => {
         if (!user.id) {
             console.log("please login")
-            navigate('/')
+            // navigate('/')
         }
     }, [user, navigate])
 

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/sass/pages/homeAdmin.module.scss'
 import FilterBar from '../components/items/filterBar'
 import ProductList from '../components/products/productList'
 const HomeAdmin = () => {
+    const [catSelected, setCatSelected] = useState("ALL")
     return (
         <>
             <div className="container_all_home_admin">
@@ -20,10 +21,10 @@ const HomeAdmin = () => {
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <a href = "/add-plant">
-                            <div className="pos_text_insert_home_admin">
-                                Insert Plant
-                            </div>
+                            <a href="/add-plant">
+                                <div className="pos_text_insert_home_admin">
+                                    Insert Plant
+                                </div>
                             </a>
                         </button>
                     </div>
@@ -33,10 +34,10 @@ const HomeAdmin = () => {
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <a href = "/view-plant-type">
-                            <div className="pos_text_insert_home_admin">
-                                View Type
-                            </div>
+                            <a href="/view-plant-type">
+                                <div className="pos_text_insert_home_admin">
+                                    View Type
+                                </div>
                             </a>
                         </button>
                     </div>
@@ -54,49 +55,51 @@ const HomeAdmin = () => {
             </div>
 
             <div className={styles.box_menu}>
-                <div className={styles.box_menu_item}>
+                <div className={styles.box_menu_item} onClick={() => setCatSelected("ALL")}>
                     <div>
                         <div>
                             <img
-                                className={styles.box_icon_grid}
+                                className={`${catSelected === "ALL" && styles.box_icon_grid}`}
                                 src='/img/icon/icon_grid.svg'
                                 alt=''
                             />
                         </div>
                     </div>
                 </div>
-                <div className={styles.box_menu_item}>
+                <div className={styles.box_menu_item} onClick={() => setCatSelected("INDOOR")}>
                     <div>
                         <img
+                            className={`${catSelected === "INDOOR" && styles.box_icon_grid}`}
                             src='/img/icon/icon_menu_indoor.svg'
                             alt=''
                         />
                     </div>
                 </div>
-                <div className={styles.box_menu_item}>
+                <div className={styles.box_menu_item} onClick={() => setCatSelected("OUTDOOR")}>
                     <div>
                         <img
+                            className={`${catSelected === "OUTDOOR" && styles.box_icon_grid}`}
                             src='/img/icon/icon_menu_outdoor.svg'
                             alt=''
                         />
                     </div>
                 </div>
-                <div className={styles.box_menu_item} style={{ fontWeight: "bold" }}>
+                <div className={styles.box_menu_item} style={{ fontWeight: "bold" }} onClick={() => setCatSelected("ALL")}>
                     All
                 </div>
-                <div className={styles.box_menu_item} style={{ fontWeight: "bold" }}>
+                <div className={styles.box_menu_item} style={{ fontWeight: "bold" }} onClick={() => setCatSelected("INDOOR")}>
                     Indoor
                 </div>
-                <div className={styles.box_menu_item} style={{ fontWeight: "bold" }}>
+                <div className={styles.box_menu_item} style={{ fontWeight: "bold" }} onClick={() => setCatSelected("OUTDOOR")}>
                     Outdoor
                 </div>
             </div>
             <div>
                 <FilterBar title={"List of the plants"} />
             </div>
-            <div 
+            <div
                 style={{
-                    marginTop:"20px"
+                    marginTop: "20px"
                 }}
             >
                 <ProductList />

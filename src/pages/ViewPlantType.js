@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Selector from '../components/items/selector'
 import { mockDataName } from '../constants/mockDataOptions'
 import styles from '../styles/sass/pages/viewPlantType.module.scss'
 import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
 const ViewPlantType = () => {
+  const [catSelected, setCatSelected] = useState("ALL")
+
   return (
     <div>
       <div className={styles.box_header}>
@@ -53,28 +55,30 @@ const ViewPlantType = () => {
           <PlantTypeList />
         </div>
         <div className={styles.box_menu}>
-          <div className={styles.box_menu_item}>
+          <div className={styles.box_menu_item} onClick={() => setCatSelected("ALL")}>
             <div>
               <div>
                 <img
-                  className={styles.box_icon_grid}
+                  className={`${catSelected === "ALL" ? styles.box_icon_grid:styles.p}`}
                   src='/img/icon/icon_grid.svg'
                   alt=''
                 />
               </div>
             </div>
           </div>
-          <div className={styles.box_menu_item}>
+          <div className={styles.box_menu_item} onClick={() => setCatSelected("INDOOR")}>
             <div>
               <img
+                className={`${catSelected === "INDOOR" ? styles.box_icon_grid:styles.p}`}
                 src='/img/icon/icon_menu_indoor.svg'
                 alt=''
               />
             </div>
           </div>
-          <div className={styles.box_menu_item}>
+          <div className={styles.box_menu_item} onClick={() => setCatSelected("OUTDOOR")}>
             <div>
               <img
+                className={`${catSelected === "OUTDOOR" ? styles.box_icon_grid:styles.p}`}
                 src='/img/icon/icon_menu_outdoor.svg'
                 alt=''
               />
