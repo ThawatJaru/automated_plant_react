@@ -9,6 +9,8 @@ import AddPlant from './pages/addPlant.js';
 import Location from './pages/Location.js';
 import { useEffect, useContext } from 'react'
 import { AppContext } from './appState/store.js';
+import AddPlantType from './pages/AddPlantType.js';
+import ConfirmAddPlant from './pages/ConfirmAddPlant.js';
 
 function App() {
     const { user } = useContext(AppContext)
@@ -31,6 +33,8 @@ function App() {
                 <Route path='/view-plant-type' element={<ViewPlantType />} />
                 <Route path='/plant/:id' element={<PlantDetailPage />} />
                 <Route path='/add-plant' element={<AddPlant />} />
+                <Route path='/add-plant-type' element={<AddPlantType />} />
+                <Route path='/confirm-add-plant' element={<ConfirmAddPlant />} />
             </Routes>
         </>
     )

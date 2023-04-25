@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../appState/store";
 import LocationItem from "../components/items/locationItem";
 import { getAllMachine, searchMachine } from "../services/api/machines";
-import React, { useEffect, useState, useContext} from "react"
+import React, { useEffect, useState, useContext } from "react"
 
 function Location() {
   const [data, setData] = useState()
@@ -17,6 +17,8 @@ function Location() {
     if (res) {
       setData(res.data)
       setLoading(false)
+    } else {
+      setLoading(false)
     }
   }
 
@@ -30,7 +32,7 @@ function Location() {
   }
 
   useEffect(() => {
-    if(user){
+    if (user) {
       onGetData()
     }
   }, [user])

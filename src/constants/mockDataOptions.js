@@ -8,6 +8,16 @@ export const mockDataName = [
     label: "Alphabetical: Z - A",
   },
 ]
+export const mockDataName2 = [
+  {
+    value: "Name: A - Z",
+    label: "Name: A - Z",
+  },
+  {
+    value: "Name: Z - A",
+    label: "Name: Z - A",
+  },
+]
 
 export const mockDataPrice = [
   {

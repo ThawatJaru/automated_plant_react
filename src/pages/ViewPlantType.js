@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Selector from '../components/items/selector'
-import { mockDataName } from '../constants/mockDataOptions'
+import { mockDataName2 } from '../constants/mockDataOptions'
 import styles from '../styles/sass/pages/viewPlantType.module.scss'
 import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
@@ -41,7 +41,7 @@ const ViewPlantType = () => {
           }}
         >
           <strong>Sort By</strong>
-          <Selector options={mockDataName} title={"Name"} />
+          <Selector options={mockDataName2} title={"Name"} />
         </div>
       </div>
 

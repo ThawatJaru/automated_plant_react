@@ -20,6 +20,7 @@ const FilterBar = ({ title, }) => {
     }
   }, [statusSelected, filterSelected])
 
+  
   const onClear = () => {
     setStatusSelected(true)
     setFilterSelected({
@@ -28,6 +29,8 @@ const FilterBar = ({ title, }) => {
       arrival: "",
     })
   }
+
+
   return (
     <div className={styles.box}>
       <h2>{title}</h2>
