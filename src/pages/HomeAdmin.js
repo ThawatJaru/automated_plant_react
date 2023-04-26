@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from '../styles/sass/pages/homeAdmin.module.scss'
 import FilterBar from '../components/items/filterBar'
 import ProductList from '../components/products/productList'
+import { Link } from 'react-router-dom'
 const HomeAdmin = () => {
     const [catSelected, setCatSelected] = useState("ALL")
     return (
@@ -17,29 +18,31 @@ const HomeAdmin = () => {
                 </div>
                 <div className="container_right_home_admin">
                     <div className="pos_btn_insert_plant_home_admin">
+                        <Link to='/insert-plant-slot'>
                         <button className="btn_insert_plant_home_admin">
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <a href="/add-plant">
+                           
                                 <div className="pos_text_insert_home_admin">
                                     Insert Plant
                                 </div>
-                            </a>
+                            
                         </button>
+                        </Link>
                     </div>
 
                     <div className="pos_btn_insert_plant_home_admin">
+                        <Link to='/view-plant-type'>
                         <button className="btn_view_type_home_admin">
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <a href="/view-plant-type">
                                 <div className="pos_text_insert_home_admin">
                                     View Type
                                 </div>
-                            </a>
                         </button>
+                        </Link>
                     </div>
                 </div>
             </div>

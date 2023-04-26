@@ -39,7 +39,8 @@ const AddPlant = () => {
                 <BiImageAdd size={130} />
               </div>
               <div className={styles.but_select_img}>Select Image</div>
-              <input type="file" id='file' />
+              <input type="file" id='file'  />
+              
             </label>
           </div>
           {/* grid 2 */}
