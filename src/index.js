@@ -8,14 +8,16 @@ import './styles/page/add_location.css';
 import './styles/page/edit_location.css';
 import './styles/page/home_admin.css';
 import './styles/global.css';
+import AppProvider from './appState/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
+
+  <AppProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  // </React.StrictMode>
+  </AppProvider>
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>

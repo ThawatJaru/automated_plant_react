@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { createMachine } from '../services/api/machines'
+import { Link } from 'react-router-dom'
 
 const AddLocation = () => {
     const [dataForm, setDataForm] = useState({
@@ -28,14 +29,14 @@ const AddLocation = () => {
     console.log(error)
     return (
         <>
-            <a href='/machine-location' className="btn_back_edit_location">
+            <Link to='/machine-location' className="btn_back_edit_location">
                 <div>
                     <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
                 </div>
                 <div className="pos_text_back">
                     Back
                 </div>
-            </a>
+            </Link>
 
             <h1 className="add_loc_text_machine">
                 Add your machine's location
@@ -56,7 +57,7 @@ const AddLocation = () => {
                             Capacity *
                         </div>
                         <div className="pos_input_loc_add_location">
-                            <input type="text" placeholder="3" className="cap_add_add_location" name="capacity" value={dataForm.capacity} />
+                            <input type="number" placeholder="3" className="cap_add_add_location" name="capacity" value={dataForm.capacity} />
                             <i className="pos_slots_text_add_location">Slots</i>
                         </div>
                     </div>

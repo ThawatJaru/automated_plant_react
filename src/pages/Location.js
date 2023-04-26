@@ -1,20 +1,42 @@
+import { Link } from "react-router-dom";
+import { AppContext } from "../appState/store";
 import LocationItem from "../components/items/locationItem";
-import { getAllMachine } from "../services/api/machines";
-import React, { useEffect, useState } from "react"
+import { getAllMachine, searchMachine } from "../services/api/machines";
+import React, { useEffect, useState, useContext } from "react"
 
 function Location() {
   const [data, setData] = useState()
+  const [loading, setLoading] = useState(false)
+  const [textSearch, setTextSearch] = useState("")
+  const { user } = useContext(AppContext)
 
   const onGetData = async () => {
-    const res = await getAllMachine("00000000-0000-4000-8000-000000000000")
+    console.log("get data")
+    setLoading(true)
+    const res = await getAllMachine(user.id)
     if (res) {
       setData(res.data)
+      setLoading(false)
+    } else {
+      setLoading(false)
+    }
+  }
+
+  const onSearchedData = async () => {
+    setLoading(true)
+    const res = await searchMachine(user.id, textSearch)
+    if (res) {
+      setData(res.data)
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    onGetData()
-  }, [])
+    if (user) {
+      onGetData()
+    }
+  }, [user])
+
 
   return (
     <>
@@ -23,11 +45,17 @@ function Location() {
 
       </br>
       <label className="Find_location" id="border_loc">
-        <div className="pos_icon_search">
+        <div className="pos_icon_search" onClick={() => onSearchedData()}>
           <img src="/img/icon/icon_search.svg" alt="" width="25" height="25" />
         </div>
         <div className="pos_plant_search">
-          <input type="text" placeholder="Find your location" className="plant_search" value="" />
+          <input
+            type="text"
+            placeholder="Find your location"
+            className="plant_search"
+            style={{ width: "500px" }}
+            onChange={(e) => setTextSearch(e.target.value)}
+          />
         </div>
       </label>
 
@@ -40,9 +68,9 @@ function Location() {
 
       <div
         style={{
-          maxHeight:"50vh",
-          overflow:"scroll",
-          paddingRight:"10px",
+          maxHeight: "50vh",
+          overflow: "scroll",
+          paddingRight: "10px",
         }}
       >
         {data && data.length ? data.map((item, key) => (
@@ -50,19 +78,19 @@ function Location() {
             <LocationItem data={item} />
           </div>
         )) : (
-          <div style={{textAlign:"center"}}>
-            Loading
-            </div>
+          <div style={{ textAlign: "center" }}>
+            {loading ? "Loading..." : " No machine location available"}
+          </div>
         )}
       </div>
 
-      <a href="/add-location">
+      <Link to="/add-location">
         <div className="pos_plus_btn">
           <button className="btn_add">
             <img src="img/icon/icon_plus.svg" alt="" width="40" height="40" />
           </button>
         </div>
-      </a>
+      </Link>
     </>
   );
 }

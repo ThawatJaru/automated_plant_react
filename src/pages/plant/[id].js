@@ -1,19 +1,20 @@
 import React from 'react'
 import styles from '../../styles/sass/pages/plantDetail.module.scss'
+import { Link } from 'react-router-dom'
 
 const PlantDetailPage = () => {
   return (
     <div >
-      <a href='/machine-location'  className="btn_back_edit_location">
+      <Link to='/machine-location' className="btn_back_edit_location">
         <div>
           <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
         </div>
         <div className="pos_text_back">
           Back
         </div>
-      </a>
+      </Link>
       <div>
-        <h2 style={{textAlign:"center"}} >---  Plant State  ---</h2>
+        <h2 style={{ textAlign: "center" }} >---  Plant State  ---</h2>
         <div
           style={{
             display: 'grid',

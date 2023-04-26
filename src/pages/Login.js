@@ -1,8 +1,11 @@
 import { loginService } from "../services/api/staff/login";
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../appState/store";
+
 function Login() {
   const navigate = useNavigate();
+  const { setUser } = useContext(AppContext)
   const [dataForm, setDataForm] = useState({
     username: null,
     password: null,
@@ -21,6 +24,7 @@ function Login() {
     }
     const res = await loginService(data)
     if (res) {
+      setUser(res.data)
       navigate("/machine-location")
     }
   }
@@ -37,10 +41,10 @@ function Login() {
         <img src="/img/plant_logo.svg" alt="" width="190" height="198" className="pos_img" />
       </div>
       {/* error massage */}
-      <div 
+      <div
         style={{
-          color:"red",
-          textAlign:"center",
+          color: "red",
+          textAlign: "center",
         }}
       >
         {error.status && error.massage}

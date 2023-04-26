@@ -2,6 +2,7 @@ import React from 'react'
 import { BiImageAdd } from 'react-icons/bi'
 import styles from '../styles//sass/pages/addPlant.module.scss'
 import Selector from '../components/items/selector'
+import { Link } from 'react-router-dom'
 const AddPlant = () => {
   return (
     <div
@@ -10,14 +11,14 @@ const AddPlant = () => {
         position: 'relative',
       }}
     >
-      <a href='/machine-location' className="btn_back_edit_location">
+      <Link to='/home-admin' className="btn_back_edit_location">
         <div>
           <img src="/img/icon/icon_arrow.svg" alt="" width="10" height="10" />
         </div>
         <div className="pos_text_back">
           Back
         </div>
-      </a>
+      </Link>
       <div style={{ marginTop: "20px" }}>
         <h2>Insert plant to Slot</h2>
       </div>
