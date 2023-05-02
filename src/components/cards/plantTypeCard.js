@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../../styles/sass/components/cards/plantTypeCard.module.scss'
 const PlantTypeCard = ({data}) => {
+  
   return (
     <div>
       <div className={styles.box}>
