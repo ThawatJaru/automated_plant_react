@@ -4,9 +4,25 @@ import { mockDataName2 } from '../constants/mockDataOptions'
 import styles from '../styles/sass/pages/viewPlantType.module.scss'
 import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
-import { getAllPlantType } from '../services/api/plant'
+import { getAllPlantType, getPlantTypeFromCat } from '../services/api/plant'
+
+const cat_data = [
+  {
+    id: '47a2cf72-c89f-4ba9-8f0e-3943bd0c5132',
+    name: 'indoor',
+    description: null
+  },
+  {
+    id: 'c559fc61-6e3a-4f72-9a0e-bd6faeb25d58',
+    name: 'outdoor',
+    description: null
+  }
+]
 const ViewPlantType = () => {
-  const [catSelected, setCatSelected] = useState("ALL")
+  const [catSelected, setCatSelected] = useState({
+    value: "",
+    label: "ALL"
+  })
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [body, setBody] = useState({
@@ -21,6 +37,14 @@ const ViewPlantType = () => {
       setLoading(false)
     }
   }
+  const onGetPlantTypesFromCat = async () => {
+    setLoading(true)
+    const res = await getPlantTypeFromCat(catSelected.value)
+    if (res) {
+      setData(res.data)
+      setLoading(false)
+    }
+  }
   const onSortName = (value) => {
     setBody({
       ...body,
@@ -28,9 +52,18 @@ const ViewPlantType = () => {
     })
   }
 
+  const onChangeCat = (value, label) => {
+    setCatSelected({
+      value,
+      label
+    })
+  }
   useEffect(() => {
     onGetPlantTypes()
-  }, [body])
+    if (catSelected.value) {
+      onGetPlantTypesFromCat()
+    }
+  }, [body, catSelected])
 
   return (
     <div
@@ -108,30 +141,30 @@ const ViewPlantType = () => {
           )}
         </div>
         <div className={styles.box_menu}>
-          <div className={styles.box_menu_item} onClick={() => setCatSelected("ALL")}>
+          <div className={styles.box_menu_item} onClick={() => onChangeCat("","ALL")}>
             <div>
               <div>
                 <img
-                  className={`${catSelected === "ALL" ? styles.box_icon_grid : styles.p}`}
+                  className={`${catSelected.value === "ALL" ? styles.box_icon_grid : styles.p}`}
                   src='/img/icon/icon_grid.svg'
                   alt=''
                 />
               </div>
             </div>
           </div>
-          <div className={styles.box_menu_item} onClick={() => setCatSelected("INDOOR")}>
+          <div className={styles.box_menu_item} onClick={() => onChangeCat(cat_data[0].id,"INDOOR")}>
             <div>
               <img
-                className={`${catSelected === "INDOOR" ? styles.box_icon_grid : styles.p}`}
+                className={`${catSelected.value === "INDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_indoor.svg'
                 alt=''
               />
             </div>
           </div>
-          <div className={styles.box_menu_item} onClick={() => setCatSelected("OUTDOOR")}>
+          <div className={styles.box_menu_item} onClick={() => onChangeCat(cat_data[1].id,"OUTDOOR")}>
             <div>
               <img
-                className={`${catSelected === "OUTDOOR" ? styles.box_icon_grid : styles.p}`}
+                className={`${catSelected.value === "OUTDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_outdoor.svg'
                 alt=''
               />
