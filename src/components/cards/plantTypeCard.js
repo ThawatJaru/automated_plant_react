@@ -1,21 +1,21 @@
 import React from 'react'
 import styles from '../../styles/sass/components/cards/plantTypeCard.module.scss'
-const PlantTypeCard = () => {
+const PlantTypeCard = ({data}) => {
   return (
     <div>
       <div className={styles.box}>
         <div className={styles.flex}>
           <img src="/img/icon/icon_indoor.svg" alt="" width={30} />
-          <strong>Cactus</strong>
+          <strong>{data.name}</strong>
         </div>
         <div>
           <div className={styles.flex}>
             <div>Lighting</div>
-            <strong>Full Sun</strong>
+            <strong>{data.preset.lighting.name}</strong>
           </div>
           <div className={styles.flex}>
             <div>Intensity</div>
-            <strong>Direct</strong>
+            <strong>{data.preset.intensity.name}</strong>
           </div>
           <div className={styles.flex}>
             <div>Duration</div>

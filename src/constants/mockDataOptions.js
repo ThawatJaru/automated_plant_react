@@ -10,11 +10,11 @@ export const mockDataName = [
 ]
 export const mockDataName2 = [
   {
-    value: "Name: A - Z",
+    value: "desc",
     label: "Name: A - Z",
   },
   {
-    value: "Name: Z - A",
+    value: "asc",
     label: "Name: Z - A",
   },
 ]

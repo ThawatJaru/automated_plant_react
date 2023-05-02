@@ -1,16 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Selector from '../components/items/selector'
 import { mockDataName2 } from '../constants/mockDataOptions'
 import styles from '../styles/sass/pages/viewPlantType.module.scss'
 import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
+import { getAllPlantType } from '../services/api/plant'
 const ViewPlantType = () => {
   const [catSelected, setCatSelected] = useState("ALL")
-  const [mockData, setMockData] = useState(true)
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [body, setBody] = useState({
+    name: "name",
+    order: "desc"
+  })
+  const onGetPlantTypes = async () => {
+    setLoading(true)
+    const res = await getAllPlantType(body.name, body.order)
+    if (res) {
+      setData(res.data)
+      setLoading(false)
+    }
+  }
+  const onSortName = (value) => {
+    setBody({
+      ...body,
+      order: value
+    })
+  }
+
+  useEffect(() => {
+    onGetPlantTypes()
+  }, [body])
+
   return (
     <div
       style={{
-        position: "relative"
+        position: "relative",
+        minHeight: "100vh"
       }}
     >
       <div className={styles.box_header}>
@@ -45,7 +71,9 @@ const ViewPlantType = () => {
           }}
         >
           <strong>Sort By</strong>
-          <Selector options={mockDataName2} title={"Name"} />
+          <Selector options={mockDataName2} title={"Name"}
+            onChange={(e) => onSortName(e)}
+          />
         </div>
       </div>
 
@@ -56,23 +84,26 @@ const ViewPlantType = () => {
             gridColumn: 'span 6 / span 6',
           }}
         >
-          {mockData ? (
-            <PlantTypeList />
+          {data && data.length && !loading ? (
+            <PlantTypeList data={data} />
           ) : (
             <div
               style={{
-                color: "red",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 height: "100%",
               }}
             >
-              <h1 style={{
-                color: "red"
-              }} >
-                No Plant types are available to display
-              </h1>
+              {loading ? (
+                <>Loading</>
+              ) : (
+                <h1 style={{
+                  color: "red"
+                }} >
+                  "No Plant types are available to display"
+                </h1>
+              )}
             </div>
           )}
         </div>
