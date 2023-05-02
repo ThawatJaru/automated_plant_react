@@ -1,6 +1,5 @@
 import Login from './pages/Login.js';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import EditLocation from './pages/EditLocation.js';
 import HomeAdmin from './pages/HomeAdmin.js';
 import AddLocation from './pages/AddLocation.js'
 import ViewPlantType from './pages/ViewPlantType.js';
@@ -11,6 +10,7 @@ import { useEffect, useContext } from 'react'
 import { AppContext } from './appState/store.js';
 import AddPlantType from './pages/AddPlantType.js';
 import ConfirmAddPlant from './pages/ConfirmAddPlant.js';
+import EditLocation from './pages/editLocation/[id].js';
 
 function App() {
     const { user } = useContext(AppContext)
@@ -28,7 +28,7 @@ function App() {
                 <Route path='/' element={<Login />} />
                 <Route path='/machine-location' element={<Location />} />
                 <Route path='/add-location' element={<AddLocation />} />
-                <Route path='/edit-location' element={<EditLocation />} />
+                <Route path='/edit-location/:id' element={<EditLocation />} />
                 <Route path='/home-admin' element={<HomeAdmin />} />
                 <Route path='/view-plant-type' element={<ViewPlantType />} />
                 <Route path='/plant/:id' element={<PlantDetailPage />} />

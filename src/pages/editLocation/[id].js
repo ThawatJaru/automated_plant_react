@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
-import { createMachine } from '../services/api/machines'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from "react-router-dom";
+import LocationForm from "../../components/forms/locationForm";
+import React, { useState, useEffect, useContext } from 'react'
+import { updateMachine, getMachine } from '../../services/api/machines'
 import { useNavigate } from "react-router-dom";
-import LocationForm from '../components/forms/locationForm';
+import { AppContext } from "../../appState/store";
 
-const AddLocation = () => {
+function EditLocation() {
     const navigate = useNavigate();
+    const param = useParams()
+    const { user } = useContext(AppContext)
 
     const [dataForm, setDataForm] = useState({
         name: null,
@@ -26,7 +29,7 @@ const AddLocation = () => {
             })
             return
         }
-        await createMachine("00000000-0000-4000-8000-000000000000", data)
+        await updateMachine(user.id, param.id, data)
         setLoading(false)
         navigate("/machine-location")
 
@@ -39,6 +42,22 @@ const AddLocation = () => {
             massage: ""
         })
     }
+    const onGetData = async (m_id) => {
+        const { data } = await getMachine(user.id, m_id)
+        if (data) {
+            setDataForm({
+                name: data.name,
+                description: data.description,
+                capacity: data.capacity
+            })
+        }
+    }
+    useEffect(() => {
+        if (param.id) {
+            onGetData(param.id)
+        }
+    }, [param])
+
     console.log(error)
     return (
         <>
@@ -52,16 +71,15 @@ const AddLocation = () => {
             </Link>
 
             <h1 className="add_loc_text_machine">
-                Add your machine's location
+                Edit location
             </h1>
 
+            {/* form */}
             <LocationForm
                 dataForm={dataForm}
                 onChangeDataForm={onChangeDataForm}
-                mode={"CREATE"}
+                mode={"EDIT"}
             />
-
-
             <div className="pos_btn_submit_add_location">
                 <div
                     style={{
@@ -76,12 +94,11 @@ const AddLocation = () => {
                     <strong>{error.massage}</strong>
                 </div>
                 <button className="btn_submit_add_location" onClick={() => onCreate(dataForm)}>
-                    {loading ? "Loading" : "Submit"}
-
+                    {loading ? "Loading" : "Save"}
                 </button>
             </div>
         </>
-    )
+    );
 }
 
-export default AddLocation
+export default EditLocation;

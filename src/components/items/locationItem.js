@@ -19,7 +19,13 @@ const LocationItem = ({ data }) => {
             {data.name}
           </div>
           <div className="slots_service">
-            In Service: {data.capacity} slots
+            In Service:
+            <span
+              style={{
+                color: `${data.capacity === 0 && "red"}`
+              }}
+            >{data.capacity}</span>
+            slots
           </div>
         </div>
       </div>
@@ -29,7 +35,7 @@ const LocationItem = ({ data }) => {
             Select
           </button>
         </Link>
-        <Link to="/edit-location">
+        <Link to={`/edit-location/${data.id}`}>
           <button className="btn_edit">
             Edit
           </button>

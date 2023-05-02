@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../styles/sass/pages/addPlantType.module.scss'
 import Checkbox from '../components/items/checkbox'
 const AddPlantType = () => {
+  const [dataFrom, setDataFrom] = useState({
+    
+  })
   return (
     <div
       style={{
@@ -73,7 +76,7 @@ const AddPlantType = () => {
             <div className={`${styles.bg_purple}`}>
               <div
                 style={{
-                  textAlign:"center"
+                  textAlign: "center"
                 }}
               >Intensity</div>
               <div>Lighting</div>
@@ -159,10 +162,10 @@ const AddPlantType = () => {
       <div>
         <button className={`${styles.but_purple}`}
           style={{
-            position:"absolute",
-            right:"0",
-            bottom:"5px",
-            fontSize:"30px"
+            position: "absolute",
+            right: "0",
+            bottom: "5px",
+            fontSize: "30px"
           }}
         >
           <strong>Submit</strong>

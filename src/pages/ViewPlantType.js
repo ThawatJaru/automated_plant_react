@@ -6,9 +6,13 @@ import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
 const ViewPlantType = () => {
   const [catSelected, setCatSelected] = useState("ALL")
-
+  const [mockData, setMockData] = useState(true)
   return (
-    <div>
+    <div
+      style={{
+        position: "relative"
+      }}
+    >
       <div className={styles.box_header}>
         <div style={{
           gridColumn: 'span 2 / span 2',
@@ -52,14 +56,32 @@ const ViewPlantType = () => {
             gridColumn: 'span 6 / span 6',
           }}
         >
-          <PlantTypeList />
+          {mockData ? (
+            <PlantTypeList />
+          ) : (
+            <div
+              style={{
+                color: "red",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <h1 style={{
+                color: "red"
+              }} >
+                No Plant types are available to display
+              </h1>
+            </div>
+          )}
         </div>
         <div className={styles.box_menu}>
           <div className={styles.box_menu_item} onClick={() => setCatSelected("ALL")}>
             <div>
               <div>
                 <img
-                  className={`${catSelected === "ALL" ? styles.box_icon_grid:styles.p}`}
+                  className={`${catSelected === "ALL" ? styles.box_icon_grid : styles.p}`}
                   src='/img/icon/icon_grid.svg'
                   alt=''
                 />
@@ -69,7 +91,7 @@ const ViewPlantType = () => {
           <div className={styles.box_menu_item} onClick={() => setCatSelected("INDOOR")}>
             <div>
               <img
-                className={`${catSelected === "INDOOR" ? styles.box_icon_grid:styles.p}`}
+                className={`${catSelected === "INDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_indoor.svg'
                 alt=''
               />
@@ -78,7 +100,7 @@ const ViewPlantType = () => {
           <div className={styles.box_menu_item} onClick={() => setCatSelected("OUTDOOR")}>
             <div>
               <img
-                className={`${catSelected === "OUTDOOR" ? styles.box_icon_grid:styles.p}`}
+                className={`${catSelected === "OUTDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_outdoor.svg'
                 alt=''
               />
@@ -86,6 +108,11 @@ const ViewPlantType = () => {
           </div>
         </div>
       </div>
+      <Link to="/add-plant-type">
+        <div className='my_but_plus'>
+          <img src="img/icon/icon_plus.svg" alt="" width="40" height="40" />
+        </div>
+      </Link>
     </div>
   )
 }
