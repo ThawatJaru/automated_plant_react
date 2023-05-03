@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MdRadioButtonUnchecked } from 'react-icons/md'
 import { RiCheckboxBlankCircleFill } from 'react-icons/ri'
-const Checkbox = ({ label, value }) => {
+const Checkbox = ({ label, value, isChecked, handleChange }) => {
   const [checked, setChecked] = useState()
 
+  useEffect(() => {
+      setChecked(isChecked)
 
+  }, [isChecked])
+
+  const onCheck = () => {
+    handleChange(value)
+    setChecked(!checked)
+  }
   return (
     <div>
       <label htmlFor=""
@@ -13,7 +21,7 @@ const Checkbox = ({ label, value }) => {
           gap: "20px",
           alignItems: "center"
         }}
-        onClick={() => setChecked(!checked)}
+        onClick={() => onCheck()}
       >
         {checked ? (
           <RiCheckboxBlankCircleFill size={30} color='#9B7DBF' />

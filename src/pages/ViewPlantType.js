@@ -1,14 +1,77 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Selector from '../components/items/selector'
 import { mockDataName2 } from '../constants/mockDataOptions'
 import styles from '../styles/sass/pages/viewPlantType.module.scss'
 import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
+import { getAllPlantType, getPlantTypeFromCat } from '../services/api/plant'
+
+const cat_data = [
+  {
+    id: '47a2cf72-c89f-4ba9-8f0e-3943bd0c5132',
+    name: 'indoor',
+    description: null
+  },
+  {
+    id: 'c559fc61-6e3a-4f72-9a0e-bd6faeb25d58',
+    name: 'outdoor',
+    description: null
+  }
+]
 const ViewPlantType = () => {
-  const [catSelected, setCatSelected] = useState("ALL")
+  const [catSelected, setCatSelected] = useState({
+    value: "",
+    label: "ALL"
+  })
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [body, setBody] = useState({
+    name: "name",
+    order: "desc"
+  })
+  const onGetPlantTypes = async () => {
+    setLoading(true)
+    const res = await getAllPlantType(body.name, body.order)
+    if (res) {
+      setData(res.data)
+      setLoading(false)
+    }
+  }
+  const onGetPlantTypesFromCat = async () => {
+    setLoading(true)
+    const res = await getPlantTypeFromCat(catSelected.value)
+    if (res) {
+      setData(res.data)
+      setLoading(false)
+    }
+  }
+  const onSortName = (value) => {
+    setBody({
+      ...body,
+      order: value
+    })
+  }
+
+  const onChangeCat = (value, label) => {
+    setCatSelected({
+      value,
+      label
+    })
+  }
+  useEffect(() => {
+    onGetPlantTypes()
+    if (catSelected.value) {
+      onGetPlantTypesFromCat()
+    }
+  }, [body, catSelected])
 
   return (
-    <div>
+    <div
+      style={{
+        position: "relative",
+        minHeight: "100vh"
+      }}
+    >
       <div className={styles.box_header}>
         <div style={{
           gridColumn: 'span 2 / span 2',
@@ -41,7 +104,9 @@ const ViewPlantType = () => {
           }}
         >
           <strong>Sort By</strong>
-          <Selector options={mockDataName2} title={"Name"} />
+          <Selector options={mockDataName2} title={"Name"}
+            onChange={(e) => onSortName(e)}
+          />
         </div>
       </div>
 
@@ -52,33 +117,54 @@ const ViewPlantType = () => {
             gridColumn: 'span 6 / span 6',
           }}
         >
-          <PlantTypeList />
+          {data && data.length && !loading ? (
+            <PlantTypeList data={data} />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              {loading ? (
+                <>Loading</>
+              ) : (
+                <h1 style={{
+                  color: "red"
+                }} >
+                  "No Plant types are available to display"
+                </h1>
+              )}
+            </div>
+          )}
         </div>
         <div className={styles.box_menu}>
-          <div className={styles.box_menu_item} onClick={() => setCatSelected("ALL")}>
+          <div className={styles.box_menu_item} onClick={() => onChangeCat("","ALL")}>
             <div>
               <div>
                 <img
-                  className={`${catSelected === "ALL" ? styles.box_icon_grid:styles.p}`}
+                  className={`${catSelected.value === "ALL" ? styles.box_icon_grid : styles.p}`}
                   src='/img/icon/icon_grid.svg'
                   alt=''
                 />
               </div>
             </div>
           </div>
-          <div className={styles.box_menu_item} onClick={() => setCatSelected("INDOOR")}>
+          <div className={styles.box_menu_item} onClick={() => onChangeCat(cat_data[0].id,"INDOOR")}>
             <div>
               <img
-                className={`${catSelected === "INDOOR" ? styles.box_icon_grid:styles.p}`}
+                className={`${catSelected.value === "INDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_indoor.svg'
                 alt=''
               />
             </div>
           </div>
-          <div className={styles.box_menu_item} onClick={() => setCatSelected("OUTDOOR")}>
+          <div className={styles.box_menu_item} onClick={() => onChangeCat(cat_data[1].id,"OUTDOOR")}>
             <div>
               <img
-                className={`${catSelected === "OUTDOOR" ? styles.box_icon_grid:styles.p}`}
+                className={`${catSelected.value === "OUTDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_outdoor.svg'
                 alt=''
               />
@@ -86,6 +172,11 @@ const ViewPlantType = () => {
           </div>
         </div>
       </div>
+      <Link to="/add-plant-type">
+        <div className='my_but_plus'>
+          <img src="img/icon/icon_plus.svg" alt="" width="40" height="40" />
+        </div>
+      </Link>
     </div>
   )
 }

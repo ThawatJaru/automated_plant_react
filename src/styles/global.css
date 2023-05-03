@@ -18,9 +18,8 @@ body {
     vertical-align:middle; */
   margin: 0 auto;
   padding: 3%;
-  font-size: 18px;
 }
-a{
+a {
   text-decoration: none;
 }
 h1 {
@@ -45,8 +44,6 @@ button {
   width: 1px;
   height: 3px;
 }
-
-
 
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
@@ -89,7 +86,8 @@ input[type="file"] {
   position: absolute; /* don't let it take up space */
 }
 
-input, textarea {
+input,
+textarea {
   outline: none;
   border: none;
 }
@@ -109,4 +107,17 @@ input, textarea {
 
 .text_purple {
   color: var(--color-purple);
+}
+.my_but_plus {
+  background: var(--color-purple);
+  position: absolute;
+  bottom: 50px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

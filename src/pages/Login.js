@@ -6,6 +6,7 @@ import { AppContext } from "../appState/store";
 function Login() {
   const navigate = useNavigate();
   const { setUser } = useContext(AppContext)
+  const [loading, setLoading] = useState(false)
   const [dataForm, setDataForm] = useState({
     username: null,
     password: null,
@@ -15,6 +16,7 @@ function Login() {
     massage: ""
   })
   const onLogin = async (data) => {
+    setLoading(true)
     if (!dataForm.username) {
       setError({
         status: true,
@@ -25,6 +27,7 @@ function Login() {
     const res = await loginService(data)
     if (res) {
       setUser(res.data)
+      setLoading(false)
       navigate("/machine-location")
     }
   }
@@ -85,7 +88,7 @@ function Login() {
 
       <div className="pos_btn_login">
         <button className="btn_login" onClick={() => onLogin(dataForm)}>
-          Login
+          {loading ? "Loading" : "Login"}
         </button>
       </div>
     </>

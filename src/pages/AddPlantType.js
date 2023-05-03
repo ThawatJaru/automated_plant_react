@@ -1,8 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../styles/sass/pages/addPlantType.module.scss'
 import Checkbox from '../components/items/checkbox'
+const cat_data = [
+  {
+    id: '47a2cf72-c89f-4ba9-8f0e-3943bd0c5132',
+    name: 'Indoor',
+    description: null
+  },
+  {
+    id: 'c559fc61-6e3a-4f72-9a0e-bd6faeb25d58',
+    name: 'Outdoor',
+    description: null
+  }
+]
 const AddPlantType = () => {
+  const [dataFrom, setDataFrom] = useState({
+    name: "Spider Plant",
+    description: "An air-purifying plant that is easy to care for and propagate.",
+    category_id: "47a2cf72-c89f-4ba9-8f0e-3943bd0c5130",
+    preset_id: "97007e9d-54d3-4a12-91f5-96c7a19daecb",
+    watering_period: 10,
+    document_name: "spider-plant.pdf",
+    document: ""
+  })
+  const [category, setCategory] = useState("")
+  console.log('%cMyProject%cline:27%ccategory', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(131, 175, 155);padding:3px;border-radius:2px', category)
+
+  const onChangeType = (value) => {
+    if (value) {
+      setCategory(value)
+    }
+  }
+  useEffect(() => {
+
+  }, [category])
+
   return (
     <div
       style={{
@@ -59,8 +92,11 @@ const AddPlantType = () => {
                     marginTop: "20px"
                   }}
                 >
-                  <Checkbox label={"Indoor"} />
-                  <Checkbox label={"Outdoor"} />
+                  {cat_data.length && cat_data.map((item, key) => (
+                    <div key={key}>
+                      <Checkbox label={item.name} handleChange={(e) => onChangeType(e)} value={item.id} isChecked={category == item.id ? true : false} />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -73,7 +109,7 @@ const AddPlantType = () => {
             <div className={`${styles.bg_purple}`}>
               <div
                 style={{
-                  textAlign:"center"
+                  textAlign: "center"
                 }}
               >Intensity</div>
               <div>Lighting</div>
@@ -159,10 +195,10 @@ const AddPlantType = () => {
       <div>
         <button className={`${styles.but_purple}`}
           style={{
-            position:"absolute",
-            right:"0",
-            bottom:"5px",
-            fontSize:"30px"
+            position: "absolute",
+            right: "0",
+            bottom: "5px",
+            fontSize: "30px"
           }}
         >
           <strong>Submit</strong>
