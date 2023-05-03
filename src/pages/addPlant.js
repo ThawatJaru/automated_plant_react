@@ -68,7 +68,7 @@ const AddPlant = () => {
           {/* grid 3 */}
           <div>
             <div className={styles.flex_col}>
-              <div className='asterisk'>Select plant’s type</div>
+              <div className='asterisk'>Select the slot</div>
               <Selector title={"Please select.."} type={"from"} />
             </div>
           </div>
