@@ -1,7 +1,10 @@
 import React from 'react'
 import styles from '../../styles/sass/components/cards/plantTypeCard.module.scss'
-const PlantTypeCard = ({data}) => {
-  
+import { useNavigate } from 'react-router-dom'
+import { deletePlantType } from '../../services/api/plant'
+const PlantTypeCard = ({ data, onDelete }) => {
+  const route = useNavigate()
+ 
   return (
     <div>
       <div className={styles.box}>
@@ -25,17 +28,17 @@ const PlantTypeCard = ({data}) => {
         </div>
         <div>Watering: Every 6 Days </div>
       </div>
-      <div 
+      <div
         style={{
-          display:"flex",
-          justifyContent:"end",
-          gap:"5px",
-          marginTop:"10px",
-          maxWidth:"300px"
+          display: "flex",
+          justifyContent: "end",
+          gap: "5px",
+          marginTop: "10px",
+          maxWidth: "300px"
         }}
       >
-        <button className={styles.but_edit}>Edit</button>
-        <button className={styles.but_del}>Delete</button>
+        <button className={styles.but_edit} onClick={() => route(`/edit-plant-type/${data.id}`)}>Edit</button>
+        <button className={styles.but_del} onClick={() => onDelete(data.id)}>Delete</button>
       </div>
     </div>
   )

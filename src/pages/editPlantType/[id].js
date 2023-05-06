@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import styles from '../styles/sass/pages/addPlantType.module.scss'
-import Checkbox from '../components/items/checkbox'
-import { createPlantType } from '../services/api/plant'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import styles from '../../styles/sass/pages/addPlantType.module.scss'
+import Checkbox from '../../components/items/checkbox'
+import { createPlantType, getPlantType, updatePlantType } from '../../services/api/plant'
 
 const cat_data = [
   {
@@ -51,12 +51,14 @@ const preset_data = [      // 'Plant Caring' choice selection
     duration: "2 - 3 hours",
   }
 ];
-const AddPlantType = () => {
+const EditPlantType = () => {
   const navigate = useNavigate();
+  const param = useParams()
 
   const [category, setCategory] = useState("")
   const [presetSelected, setPresetSelected] = useState("")
-  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState(null);
+
   const [loading, setLoading] = useState(false)
   const [errorForm, setErrorForm] = useState({
     status: false,
@@ -100,11 +102,11 @@ const AddPlantType = () => {
         ...dataForm,
         document_name: value?.name,
       })
-      setFile(value);
+      setFileName(value?.name);
     };
   };
 
-  const onCreate = async (data) => {
+  const onUpdate = async (data) => {
     setLoading(true)
     if (!dataForm.name && !dataForm.description && !dataForm.category_id && !dataForm.preset) {
       console.log("error")
@@ -115,7 +117,7 @@ const AddPlantType = () => {
       })
       return
     }
-    const res = await createPlantType(data)
+    const res = await updatePlantType(param.id, data)
     if (res) {
       setLoading(false)
       navigate('/view-plant-type')
@@ -131,9 +133,30 @@ const AddPlantType = () => {
       setDataForm({ ...dataForm, [e.target.name]: e.target.value })
     }
   }
-  useEffect(() => {
 
-  }, [dataForm])
+  const onGetData = async (id) => {
+    const res = await getPlantType(id)
+
+    if (res) {
+      setDataForm({
+        name: res.data.name,
+        description: res.data.description,
+        document_name: res.data.document_name,
+        category_id: res.data.category.id,
+        preset_id: res.data.preset.id,
+        watering_period: res.data.watering_period,
+      })
+      setCategory(res.data.category.id)
+      setPresetSelected(res.data.preset.id)
+      setFileName(res.data.document_name)
+    }
+
+  }
+  useEffect(() => {
+    if (param.id) {
+      onGetData(param.id)
+    }
+  }, [param.id])
 
   return (
     <div
@@ -156,7 +179,7 @@ const AddPlantType = () => {
         <div className={`${styles.grid}`}>
           <div>
             <div>
-              <h2>Add Plant’s Type</h2>
+              <h2>Edit Plant’s Type</h2>
             </div>
             <div
               style={{
@@ -242,7 +265,7 @@ const AddPlantType = () => {
                   </div>
                   <div className={`${styles.but_purple}`}>
                     <label htmlFor="file" >
-                      <div>{file?.name ? file.name : "Select Document"}</div>
+                      <div>{fileName ? fileName : "Select Document"}</div>
                       <input type="file" id="file" name="document_name" onChange={handleChangeFile} />
                     </label>
                   </div>
@@ -299,7 +322,7 @@ const AddPlantType = () => {
             bottom: "5px",
             fontSize: "30px"
           }}
-          onClick={() => onCreate(dataForm)}
+          onClick={() => onUpdate(dataForm)}
         >
           <strong>{loading ? "Loading" : "Submit"}</strong>
         </button>
@@ -308,4 +331,4 @@ const AddPlantType = () => {
   )
 }
 
-export default AddPlantType
+export default EditPlantType

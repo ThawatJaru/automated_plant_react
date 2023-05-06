@@ -11,6 +11,7 @@ import { AppContext } from './appState/store.js';
 import AddPlantType from './pages/AddPlantType.js';
 import ConfirmAddPlant from './pages/ConfirmAddPlant.js';
 import EditLocation from './pages/editLocation/[id].js';
+import EditPlantType from './pages/editPlantType/[id].js';
 
 function App() {
     const { user } = useContext(AppContext)
@@ -32,6 +33,7 @@ function App() {
                 <Route path='/home-admin' element={<HomeAdmin />} />
                 <Route path='/view-plant-type' element={<ViewPlantType />} />
                 <Route path='/plant/:id' element={<PlantDetailPage />} />
+                <Route path='/edit-plant-type/:id' element={<EditPlantType />} />
                 <Route path='/add-plant' element={<AddPlant />} />
                 <Route path='/add-plant-type' element={<AddPlantType />} />
                 <Route path='/confirm-add-plant' element={<ConfirmAddPlant />} />

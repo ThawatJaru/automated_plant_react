@@ -4,7 +4,7 @@ import { mockDataName2 } from '../constants/mockDataOptions'
 import styles from '../styles/sass/pages/viewPlantType.module.scss'
 import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
-import { getAllPlantType, getPlantTypeFromCat } from '../services/api/plant'
+import { deletePlantType, getAllPlantType, getPlantTypeFromCat } from '../services/api/plant'
 
 const cat_data = [
   {
@@ -57,6 +57,16 @@ const ViewPlantType = () => {
       value,
       label
     })
+  }
+
+  const onDelete = async (id) => {
+    setLoading(true)
+    const res = await deletePlantType(id)
+    if(res){
+      setLoading(false)
+      onGetPlantTypes()
+
+    }
   }
   useEffect(() => {
     onGetPlantTypes()
@@ -118,7 +128,7 @@ const ViewPlantType = () => {
           }}
         >
           {data && data.length && !loading ? (
-            <PlantTypeList data={data} />
+            <PlantTypeList data={data} onDelete={onDelete}/>
           ) : (
             <div
               style={{
