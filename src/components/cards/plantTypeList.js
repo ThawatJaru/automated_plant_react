@@ -1,7 +1,7 @@
 import React from 'react'
 import PlantTypeCard from './plantTypeCard'
 
-const PlantTypeList = ({ data }) => {
+const PlantTypeList = ({ data , onDelete}) => {
   return (
     <div
       style={{
@@ -15,7 +15,7 @@ const PlantTypeList = ({ data }) => {
     >
       {data && data.length ? data.map((item, key) => (
         <div key={key}>
-          <PlantTypeCard data={item} />
+          <PlantTypeCard data={item} onDelete={onDelete} />
         </div>
       )) : ""}
     </div>
