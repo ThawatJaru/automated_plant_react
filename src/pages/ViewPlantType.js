@@ -23,6 +23,7 @@ const ViewPlantType = () => {
     value: "",
     label: "ALL"
   })
+  console.log('%cMyProject%cline:22%ccatSelected', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(39, 72, 98);padding:3px;border-radius:2px', catSelected)
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [body, setBody] = useState({
@@ -155,7 +156,7 @@ const ViewPlantType = () => {
             <div>
               <div>
                 <img
-                  className={`${catSelected.value === "ALL" ? styles.box_icon_grid : styles.p}`}
+                  className={`${catSelected.label === "ALL" ? styles.box_icon_grid : styles.p}`}
                   src='/img/icon/icon_grid.svg'
                   alt=''
                 />
@@ -165,7 +166,7 @@ const ViewPlantType = () => {
           <div className={styles.box_menu_item} onClick={() => onChangeCat(cat_data[0].id,"INDOOR")}>
             <div>
               <img
-                className={`${catSelected.value === "INDOOR" ? styles.box_icon_grid : styles.p}`}
+                className={`${catSelected.label === "INDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_indoor.svg'
                 alt=''
               />
@@ -174,7 +175,7 @@ const ViewPlantType = () => {
           <div className={styles.box_menu_item} onClick={() => onChangeCat(cat_data[1].id,"OUTDOOR")}>
             <div>
               <img
-                className={`${catSelected.value === "OUTDOOR" ? styles.box_icon_grid : styles.p}`}
+                className={`${catSelected.label === "OUTDOOR" ? styles.box_icon_grid : styles.p}`}
                 src='/img/icon/icon_menu_outdoor.svg'
                 alt=''
               />

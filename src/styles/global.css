@@ -121,3 +121,9 @@ textarea {
   justify-content: center;
   align-items: center;
 }
+.text_ellipsis{
+  white-space: nowrap; 
+  width: 100px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
