@@ -18,7 +18,7 @@ const FilterBar = ({ title, }) => {
     if (name || price || arrival) {
       setStatusSelected(false)
     }
-  }, [statusSelected, filterSelected])
+  }, [statusSelected, filterSelected, name, price, arrival])
 
   
   const onClear = () => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from '../../styles/sass/pages/addPlantType.module.scss'
 import Checkbox from '../../components/items/checkbox'
-import { createPlantType, getPlantType, updatePlantType } from '../../services/api/plant'
+import { getPlantType, updatePlantType } from '../../services/api/plant'
 
 const cat_data = [
   {
