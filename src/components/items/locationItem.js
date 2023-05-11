@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { deleteMachine } from '../../services/api/machines'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { AppContext } from '../../appState/store';
 
 const LocationItem = ({ data }) => {
+  const navigate = useNavigate();
+  const { setMachineId } = useContext(AppContext)
 
   const onDelete = async (id) => {
     await deleteMachine('00000000-0000-4000-8000-000000000000', id)
     window.location.reload()
+  }
+  const onSelectMachine = async (id) => {
+    setMachineId(id)
+    navigate('/home-admin')
   }
   return (
     <div className="location_container_all">
@@ -30,11 +37,9 @@ const LocationItem = ({ data }) => {
         </div>
       </div>
       <div className="location_container_items_right">
-        <Link to="/home-admin">
-          <button className="btn_submit">
-            Select
-          </button>
-        </Link>
+        <button className="btn_submit" onClick={() => onSelectMachine(data.id)}>
+          Select
+        </button>
         <Link to={`/edit-location/${data.id}`}>
           <button className="btn_edit">
             Edit

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from '../styles/sass/pages/homeAdmin.module.scss'
 import FilterBar from '../components/items/filterBar'
 import ProductList from '../components/products/productList'
+import { Link } from 'react-router-dom'
 const HomeAdmin = () => {
     const [catSelected, setCatSelected] = useState("ALL")
     return (
@@ -21,11 +22,11 @@ const HomeAdmin = () => {
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <a href="/add-plant">
+                            <Link to="/add-plant">
                                 <div className="pos_text_insert_home_admin">
                                     Insert Plant
                                 </div>
-                            </a>
+                            </Link>
                         </button>
                     </div>
 
@@ -34,11 +35,11 @@ const HomeAdmin = () => {
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <a href="/view-plant-type">
+                            <Link to="/view-plant-type">
                                 <div className="pos_text_insert_home_admin">
                                     View Type
                                 </div>
-                            </a>
+                            </Link>
                         </button>
                     </div>
                 </div>
