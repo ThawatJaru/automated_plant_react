@@ -32,6 +32,14 @@ export const createPlantType = async (data) => {
     return null;
   }
 }
+export const createPlant = async (data, m_id) => {
+  try {
+    const res = await axiosInstance.post(`/api/plants?machine_id=${m_id}`, data)
+    return res
+  } catch (error) {
+    return null;
+  }
+}
 export const updatePlantType = async (plant_type_id, data) => {
   try {
     const res = await axiosInstance.put(`/api/plant_types/${plant_type_id}`, data)

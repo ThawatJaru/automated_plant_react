@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from '../../styles/sass/components/cards/plantTypeCard.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { deletePlantType } from '../../services/api/plant'
 const PlantTypeCard = ({ data, onDelete }) => {
   const route = useNavigate()
  
