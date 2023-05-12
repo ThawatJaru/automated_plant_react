@@ -23,19 +23,9 @@ const HomeAdmin = () => {
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-
-                           
                                 <div className="pos_text_insert_home_admin">
                                     Insert Plant
                                 </div>
-                            
-
-                            <Link to="/add-plant">
-                                <div className="pos_text_insert_home_admin">
-                                    Insert Plant
-                                </div>
-                                </Link>
-
                         </button>
                         </Link>
                     </div>
@@ -50,12 +40,6 @@ const HomeAdmin = () => {
                                 <div className="pos_text_insert_home_admin">
                                     View Type
                                 </div>
-
-                            <Link to="/view-plant-type">
-                                <div className="pos_text_insert_home_admin">
-                                    View Type
-                                </div>
-                            </Link>
                         </button>
                         </Link>
                     </div>

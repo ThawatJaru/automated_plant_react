@@ -188,9 +188,6 @@ const AddPlant = () => {
           <div>
             <div className={styles.flex_col}>
 
-              <div className='asterisk'>Select plant’s type</div>
-              <Selector title={"Please select.."} type={"from"} />
-
               <div className='asterisk'>Select the slot</div>
               <Selector title={"Please select.."} type={"from"} options={dataSlot} onChange={(e) => setSelectedSlotId(e)} />
 
