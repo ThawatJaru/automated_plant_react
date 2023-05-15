@@ -35,7 +35,7 @@ const ProductCard = ({ status, data }) => {
           </div>
         </div>
         <div className={styles.box_image}>
-          <img src="/img/product.png" alt="" width={180} />
+          <img src={`${process.env.REACT_APP_API}${data.image}`} alt="" width={180} />
           <div className={styles.icon_delete}>
             <img src="/img/icon/icon_delete.svg" alt="" width={20} />
           </div>

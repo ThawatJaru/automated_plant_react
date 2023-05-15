@@ -159,7 +159,7 @@ const AddPlant = () => {
                 </div>
               )}
               <div className={styles.but_select_img}>Select Image</div>
-              <input type="file" id='file' />
+              <input type="file" id='file' onChange={handleFileSelect} />
             </label>
           </div>
           {/* grid 2 */}

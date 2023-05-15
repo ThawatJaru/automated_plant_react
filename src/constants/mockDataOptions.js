@@ -1,10 +1,10 @@
 export const mockDataName = [
   {
-    value: "Alphabetical: A - Z",
+    value: "asc",
     label: "Alphabetical: A - Z",
   },
   {
-    value: "Alphabetical: Z - A",
+    value: "desc",
     label: "Alphabetical: Z - A",
   },
 ]
@@ -21,22 +21,22 @@ export const mockDataName2 = [
 
 export const mockDataPrice = [
   {
-    value: "Price: Low to High",
+    value: "asc",
     label: "Price: Low to High",
   },
   {
-    value: "Price: High to Low",
+    value: "desc",
     label: "Price: High to Low",
   },
 ]
 
 export const mockDataArrival = [
   {
-    value: "Newest",
+    value: "asc",
     label: "Newest",
   },
   {
-    value: "Oldest",
+    value: "desc",
     label: "Oldest",
   },
 ]

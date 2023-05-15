@@ -6,7 +6,7 @@ import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
 import { deletePlantType, getAllPlantType, getPlantTypeFromCat } from '../services/api/plantType'
 
-const cat_data = [
+export const cat_data = [
   {
     id: '47a2cf72-c89f-4ba9-8f0e-3943bd0c5132',
     name: 'indoor',
@@ -23,7 +23,6 @@ const ViewPlantType = () => {
     value: "",
     label: "ALL"
   })
-  console.log('%cMyProject%cline:22%ccatSelected', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(39, 72, 98);padding:3px;border-radius:2px', catSelected)
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [body, setBody] = useState({

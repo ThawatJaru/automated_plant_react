@@ -5,7 +5,7 @@ import { mockDataArrival, mockDataName, mockDataPrice } from '../../constants/mo
 import { GrClose } from 'react-icons/gr'
 
 
-const FilterBar = ({ title, }) => {
+const FilterBar = ({ title, handleChange }) => {
   const [filterSelected, setFilterSelected] = useState({
     name: "",
     price: "",
@@ -20,7 +20,7 @@ const FilterBar = ({ title, }) => {
     }
   }, [statusSelected, filterSelected, name, price, arrival])
 
-  
+
   const onClear = () => {
     setStatusSelected(true)
     setFilterSelected({
@@ -30,6 +30,17 @@ const FilterBar = ({ title, }) => {
     })
   }
 
+  const onChangeFilter = (sortBy, value) => {
+    setFilterSelected({
+      ...filterSelected,
+      name: value
+    })
+    const res = {
+      sortBy,
+      sort: value
+    }
+    handleChange(res)
+  }
 
   return (
     <div className={styles.box}>
@@ -40,10 +51,7 @@ const FilterBar = ({ title, }) => {
           <Selector
             options={mockDataName}
             title={"Name"}
-            onChange={(e) => setFilterSelected({
-              ...filterSelected,
-              name: e
-            })}
+            onChange={(e) => onChangeFilter("name", e)}
             statusSelected={statusSelected}
           />
         </div>
@@ -51,11 +59,8 @@ const FilterBar = ({ title, }) => {
           <Selector
             options={mockDataPrice}
             title={"Price"}
-            onChange={(e) => setFilterSelected({
-              ...filterSelected,
-              price: e
+            onChange={(e) => onChangeFilter("price", e)}
 
-            })}
             statusSelected={statusSelected}
           />
         </div>
@@ -63,10 +68,8 @@ const FilterBar = ({ title, }) => {
           <Selector
             options={mockDataArrival}
             title={"Date Arrival"}
-            onChange={(e) => setFilterSelected({
-              ...filterSelected,
-              arrival: e
-            })}
+            onChange={(e) => onChangeFilter("date", e)}
+
             statusSelected={statusSelected}
           />
         </div>
