@@ -11,7 +11,6 @@ function Location() {
   const { user } = useContext(AppContext)
 
   const onGetData = async () => {
-    console.log("get data")
     setLoading(true)
     const res = await getAllMachine(user.id)
     if (res) {

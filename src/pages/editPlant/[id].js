@@ -4,9 +4,8 @@ import styles from '../../styles//sass/pages/addPlant.module.scss'
 import Selector from '../../components/items/selector'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../../appState/store'
-import { createPlant, getAllPlantType, getPlantType } from '../../services/api/plantType'
+import {getAllPlantType, getPlantType } from '../../services/api/plantType'
 import { getAllSlot } from '../../services/api/slot'
-import { mockFileImageBase64 } from '../../constants/mockBase64'
 import { getPlants, updatePlants } from '../../services/api/plants'
 const EditPlantPage = () => {
   const [selectedFile, setSelectedFile] = useState({

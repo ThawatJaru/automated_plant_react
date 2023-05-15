@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AppContext } from '../appState/store'
 import { createPlant, getAllPlantType, getPlantType } from '../services/api/plantType'
 import { getAllSlot } from '../services/api/slot'
-import { mockFileImageBase64 } from '../constants/mockBase64'
 const AddPlant = () => {
   const [selectedFile, setSelectedFile] = useState({
     file: null,

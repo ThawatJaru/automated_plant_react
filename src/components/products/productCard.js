@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from '../../styles/sass/components/products/productCard.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { deletePlants } from '../../services/api/plants';
-import { AppContext } from '../../appState/store';
+
 
 const ProductCard = ({ status, data, onDeletePlant }) => {
-  console.log('%cMyProject%cline:7%cdata', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(118, 77, 57);padding:3px;border-radius:2px', data)
   const navigate = useNavigate();
 
   return (

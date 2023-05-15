@@ -3,12 +3,17 @@ import styles from '../../styles/sass/components/cards/plantTypeCard.module.scss
 import { useNavigate } from 'react-router-dom'
 const PlantTypeCard = ({ data, onDelete }) => {
   const route = useNavigate()
- 
+
   return (
     <div>
       <div className={styles.box}>
         <div className={styles.flex}>
-          <img src="/img/icon/icon_indoor.svg" alt="" width={30} />
+          {data.category.name === "indoor" && (
+            <img src="/img/icon/icon_indoor.svg" alt="" width={30} />
+          )}
+          {data.category.name === "outdoor" && (
+            <img src="/img/icon/icon_outdoor.svg" alt="" width={30} />
+          )}
           <strong>{data.name}</strong>
         </div>
         <div>
