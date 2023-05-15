@@ -12,6 +12,7 @@ import AppProvider from './appState/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <AppProvider>
     <BrowserRouter>
       <App />

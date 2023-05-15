@@ -47,29 +47,30 @@ const HomeAdmin = () => {
                 </div>
                 <div className="container_right_home_admin">
                     <div className="pos_btn_insert_plant_home_admin">
+                        <Link to='/insert-plant-slot'>
                         <button className="btn_insert_plant_home_admin">
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <Link to="/add-plant">
                                 <div className="pos_text_insert_home_admin">
                                     Insert Plant
                                 </div>
-                            </Link>
                         </button>
+                        </Link>
                     </div>
 
                     <div className="pos_btn_insert_plant_home_admin">
+                        <Link to='/view-plant-type'>
                         <button className="btn_view_type_home_admin">
                             <div className="pos_icon_home_admin">
                                 <img src="/img/icon/icon_arrow.svg" alt="" width="20" height="20" />
                             </div>
-                            <Link to="/view-plant-type">
+
                                 <div className="pos_text_insert_home_admin">
                                     View Type
                                 </div>
-                            </Link>
                         </button>
+                        </Link>
                     </div>
                 </div>
             </div>

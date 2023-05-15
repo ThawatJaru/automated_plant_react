@@ -54,7 +54,7 @@ const ProductCard = ({ status, data }) => {
               <button className={styles.but_edit}>Edit</button>
             </div>
             <div>
-              <button className={styles.but_black}>Manager</button>
+              <button className={styles.but_black}>Manage</button>
             </div>
           </div>
         </div>

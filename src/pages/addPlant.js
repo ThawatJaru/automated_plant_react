@@ -159,14 +159,14 @@ const AddPlant = () => {
                 </div>
               )}
               <div className={styles.but_select_img}>Select Image</div>
-              <input type="file" id='file' onChange={handleFileSelect} />
+              <input type="file" id='file' />
             </label>
           </div>
           {/* grid 2 */}
           <div>
             <div className={`${styles.flex_col}`}>
               <div className='asterisk'>Select plant’s type</div>
-              <Selector title={"Cactus"} type={"from"} options={dataPlantType} onChange={(e) => setSelectedPlantTypeId(e)} />
+              <Selector title={"Please Select..."} type={"from"} options={dataPlantType} onChange={(e) => setSelectedPlantTypeId(e)} />
             </div>
             <div className={styles.flex_col} style={{ marginTop: "30px" }}>
               <div className='asterisk'>Price</div>
@@ -188,8 +188,10 @@ const AddPlant = () => {
           {/* grid 3 */}
           <div>
             <div className={styles.flex_col}>
-              <div className='asterisk'>Select plant’s type</div>
+
+              <div className='asterisk'>Select the slot</div>
               <Selector title={"Please select.."} type={"from"} options={dataSlot} onChange={(e) => setSelectedSlotId(e)} />
+
             </div>
           </div>
           {singlePlantType && (
