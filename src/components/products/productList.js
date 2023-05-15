@@ -1,22 +1,20 @@
 import React from 'react'
 import ProductCard from './productCard'
 
-const ProductList = () => {
+const ProductList = ({data}) => {
   return (
     <div style={{
-      display:'flex',
-      gap:"18px",
-      overflowX:"scroll",
-      paddingBottom:"10px"
+      display: 'flex',
+      gap: "18px",
+      overflowX: "scroll",
+      paddingBottom: "10px"
     }}>
-      <ProductCard status={false} />
-      <ProductCard status={true} />
-      <ProductCard status={true} />
-      <ProductCard status={true} />
-      <ProductCard status={true} />
-      <ProductCard status={true} />
-      <ProductCard status={true} />
-      <ProductCard status={true} />
+      {data && data.length ? data.map((item, key) => (
+        <div key = {key}>
+          <ProductCard status={true} data = {item} />
+        </div>
+      )) : "no data"}
+      
     </div>
   )
 }

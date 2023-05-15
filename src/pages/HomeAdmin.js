@@ -1,10 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import styles from '../styles/sass/pages/homeAdmin.module.scss'
 import FilterBar from '../components/items/filterBar'
 import ProductList from '../components/products/productList'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { getAllPlants } from '../services/api/plants'
+import { AppContext } from '../appState/store'
 const HomeAdmin = () => {
+    const navigate = useNavigate();
+
+    const { machineId } = useContext(AppContext)
+    const [dataProductList, setDataProductList] = useState()
+    console.log('%cMyProject%cline:12%cdataProductList', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(237, 222, 139);padding:3px;border-radius:2px', dataProductList)
     const [catSelected, setCatSelected] = useState("ALL")
+    const [payload, setpayload] = useState({
+        m_id:machineId,
+        cat_id:"",
+        search:"",
+        sort:""
+    })
+
+    const getData = async () => {
+        const res = await getAllPlants(payload)
+        if(res){
+            setDataProductList(res.data)
+        }
+    }
+
+    useEffect(() => {
+      getData()
+      if(!machineId){
+        navigate('/machine-location')
+
+      }
+    }, [payload])
+    
     return (
         <>
             <div className="container_all_home_admin">
@@ -103,7 +132,7 @@ const HomeAdmin = () => {
                     marginTop: "20px"
                 }}
             >
-                <ProductList />
+                <ProductList data = {dataProductList}/>
             </div>
         </>
     )

@@ -4,7 +4,7 @@ import { mockDataName2 } from '../constants/mockDataOptions'
 import styles from '../styles/sass/pages/viewPlantType.module.scss'
 import PlantTypeList from '../components/cards/plantTypeList'
 import { Link } from 'react-router-dom'
-import { deletePlantType, getAllPlantType, getPlantTypeFromCat } from '../services/api/plant'
+import { deletePlantType, getAllPlantType, getPlantTypeFromCat } from '../services/api/plantType'
 
 const cat_data = [
   {
