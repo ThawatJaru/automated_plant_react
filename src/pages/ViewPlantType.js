@@ -116,6 +116,8 @@ const ViewPlantType = () => {
           <strong>Sort By</strong>
           <Selector options={mockDataName2} title={"Name"}
             onChange={(e) => onSortName(e)}
+            disable={false}
+
           />
         </div>
       </div>

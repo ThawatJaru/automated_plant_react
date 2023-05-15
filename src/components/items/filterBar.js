@@ -53,6 +53,7 @@ const FilterBar = ({ title, handleChange }) => {
             title={"Name"}
             onChange={(e) => onChangeFilter("name", e)}
             statusSelected={statusSelected}
+            disable={false}
           />
         </div>
         <div>
@@ -60,6 +61,7 @@ const FilterBar = ({ title, handleChange }) => {
             options={mockDataPrice}
             title={"Price"}
             onChange={(e) => onChangeFilter("price", e)}
+            disable={false}
 
             statusSelected={statusSelected}
           />
@@ -69,6 +71,7 @@ const FilterBar = ({ title, handleChange }) => {
             options={mockDataArrival}
             title={"Date Arrival"}
             onChange={(e) => onChangeFilter("date", e)}
+            disable={false}
 
             statusSelected={statusSelected}
           />

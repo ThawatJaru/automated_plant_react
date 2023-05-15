@@ -164,7 +164,6 @@ const HomeAdmin = () => {
             >
                 {dataProductList && dataProductList.length > 0 ? (
                     <ProductList data={dataProductList} />
-
                 ) : (
                     <strong
                         style={{

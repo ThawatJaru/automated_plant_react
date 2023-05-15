@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/sass/components/items/selector.module.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
-const Selector = ({ options, title, type, onChange, statusSelected }) => {
+const Selector = ({ options, title, type, onChange, statusSelected, defaultSelected, disable }) => {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState({
     value: "",
@@ -20,11 +20,26 @@ const Selector = ({ options, title, type, onChange, statusSelected }) => {
     }
   }, [statusSelected])
 
+  const onSetDefaultSelected = (value) => {
+    const found = options.find((item) => item)
+    if (found) {
+      setSelected(found)
+    }
+  }
+
+  useEffect(() => {
+    if (defaultSelected) {
+      onSetDefaultSelected(onSetDefaultSelected)
+    }
+  }, [defaultSelected])
+
+
   return (
     <div>
-      <div className={styles.box} onClick={() => setOpen(!open)}
+      <div className={styles.box} onClick={() => !disable && setOpen(!open)}
         style={{
-          border: type === "from" ? '3px solid #B253ED' : "",
+          border: type === "from"  ? '3px solid #B253ED' : "",
+          borderColor:disable ? 'gray':"",
           borderRadius: type === "from" ? '20px' : "",
           padding: type === "from" ? '15px' : "",
         }}

@@ -12,6 +12,7 @@ import AddPlantType from './pages/AddPlantType.js';
 import ConfirmAddPlant from './pages/ConfirmAddPlant.js';
 import EditLocation from './pages/editLocation/[id].js';
 import EditPlantType from './pages/editPlantType/[id].js';
+import EditPlantPage from './pages/editPlant/[id].js';
 
 function App() {
     const { user } = useContext(AppContext)
@@ -35,6 +36,7 @@ function App() {
                 <Route path='/plant/:id' element={<PlantDetailPage />} />
                 <Route path='/insert-plant-slot' element={<AddPlant />} />
                 <Route path='/edit-plant-type/:id' element={<EditPlantType />} />
+                <Route path='/edit-plant/:id' element={<EditPlantPage />} />
                 <Route path='/add-plant' element={<AddPlant />} />
                 <Route path='/add-plant-type' element={<AddPlantType />} />
                 <Route path='/confirm-add-plant-slot' element={<ConfirmAddPlant />} />

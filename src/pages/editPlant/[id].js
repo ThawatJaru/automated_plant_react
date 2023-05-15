@@ -1,16 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { BiImageAdd } from 'react-icons/bi'
-import styles from '../styles//sass/pages/addPlant.module.scss'
-import Selector from '../components/items/selector'
-import { Link, useNavigate } from 'react-router-dom'
-import { AppContext } from '../appState/store'
-import { createPlant, getAllPlantType, getPlantType } from '../services/api/plantType'
-import { getAllSlot } from '../services/api/slot'
-import { mockFileImageBase64 } from '../constants/mockBase64'
-const AddPlant = () => {
+import styles from '../../styles//sass/pages/addPlant.module.scss'
+import Selector from '../../components/items/selector'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { AppContext } from '../../appState/store'
+import { createPlant, getAllPlantType, getPlantType } from '../../services/api/plantType'
+import { getAllSlot } from '../../services/api/slot'
+import { mockFileImageBase64 } from '../../constants/mockBase64'
+import { getPlants, updatePlants } from '../../services/api/plants'
+const EditPlantPage = () => {
   const [selectedFile, setSelectedFile] = useState({
     file: null,
-    base64: null
+    base64: null,
+    imageUrl: ""
   });
   const { machineId } = useContext(AppContext)
   const [dataPlantType, setDataPlantType] = useState([])
@@ -25,6 +27,7 @@ const AddPlant = () => {
   })
   const [loadding, setLoadding] = useState(false)
   const navigate = useNavigate();
+  const param = useParams()
 
   // Function to handle file selection
   const handleFileSelect = (event) => {
@@ -35,7 +38,7 @@ const AddPlant = () => {
       // ทำสิ่งที่ต้องการกับภาพในรูปแบบ Base64
       setSelectedFile({
         file: event.target.files[0],
-        base64: base64Image.toString()
+        base64: base64Image
       });
     };
 
@@ -74,55 +77,72 @@ const AddPlant = () => {
     }
   }
   const onSubmit = async () => {
-    if (!selectedPlantTypeId || !selectedSlotId || !selectedFile || !price) {
-      setError({
-        status: true,
-        message: "The form is incomplete"
-      })
-      setLoadding(false)
-      return
-    }
+    // if (!selectedPlantTypeId || !selectedSlotId || !selectedFile || !price) {
+    //   setError({
+    //     status: true,
+    //     message: "The form is incomplete"
+    //   })
+    //   setLoadding(false)
+    //   return
+    // }
     setLoadding(true)
     const payload = {
       plant_type_id: selectedPlantTypeId,
       slot_id: selectedSlotId,
       price: Number(price),
-      image_name: selectedFile.file.name,
+      image_name: selectedFile?.file?.name,
       image: selectedFile.base64
     }
-    try {
-      const res = await createPlant(payload, machineId)
-      if (res) {
-        navigate('/home-admin')
-        setLoadding(false)
-      }else{
-        setLoadding(false)
-        setError({
-          status: true,
-          message: "Something is wrong"
-        })
-      }
-    } catch (error) {
-      console.log('error')
+
+    const res = await updatePlants(machineId, param.id, payload)
+    if (res) {
+      navigate('/home-admin')
+      setLoadding(false)
     }
+  }
+
+  const onGetDataPlant = async () => {
+    const { data } = await getPlants(machineId, param.id)
+    if (data) {
+      setSelectedSlotId(data.slot.id)
+      setPrice(data.price)
+      setSelectedFile({
+        ...selectedFile,
+        file: {
+          name: data.image
+        },
+        imageUrl: data.image
+      })
+      setSelectedPlantTypeId(data.plant_type.id)
+    }
+    onGetPlantType()
 
   }
   useEffect(() => {
     if (!machineId) {
       navigate('/machine-location')
     }
-    if (selectedPlantTypeId) {
-      onGetPlantType()
-    }
+
     if (selectedPlantTypeId || selectedSlotId || selectedFile || price) {
       setError({
         status: false,
         message: ""
       })
     }
+
+    if (param) {
+      onGetDataPlant()
+    }
     onGetDataPlantType()
     onGetDataSlot()
-  }, [machineId, selectedPlantTypeId, selectedSlotId, selectedFile, price])
+  }, [machineId, param.id])
+
+  useEffect(() => {
+    if (selectedPlantTypeId) {
+      onGetPlantType()
+    }
+  }, [selectedPlantTypeId])
+
 
   return (
     <div
@@ -155,10 +175,10 @@ const AddPlant = () => {
                 gap: "10px",
               }}
             >
-              {selectedFile.file ? (
+              {selectedFile.file || selectedFile.imageUrl ? (
                 <div className={styles.box_input_img}>
                   <img
-                    src={URL.createObjectURL(selectedFile.file)}
+                    src={selectedFile.imageUrl ? `${process.env.REACT_APP_API}${selectedFile.imageUrl}` : URL.createObjectURL(selectedFile.file)}
                     alt="Selected"
                     width="230px"
                   />
@@ -176,7 +196,14 @@ const AddPlant = () => {
           <div>
             <div className={`${styles.flex_col}`}>
               <div className='asterisk'>Select plant’s type</div>
-              <Selector title={"Please Select..."} type={"from"} options={dataPlantType} onChange={(e) => setSelectedPlantTypeId(e)} />
+              <Selector
+                defaultSelected={selectedPlantTypeId}
+                title={"Please Select..."}
+                type={"from"}
+                options={dataPlantType}
+                onChange={(e) => setSelectedPlantTypeId(e)}
+                disable={true}
+              />
             </div>
             <div className={styles.flex_col} style={{ marginTop: "30px" }}>
               <div className='asterisk'>Price</div>
@@ -190,6 +217,7 @@ const AddPlant = () => {
                     width: "70px"
                   }}
                   onChange={(e) => setPrice(e.target.value)}
+                  value={price}
                 />
                 <div>Baht</div>
               </div>
@@ -200,7 +228,15 @@ const AddPlant = () => {
             <div className={styles.flex_col}>
 
               <div className='asterisk'>Select the slot</div>
-              <Selector title={"Please select.."} type={"from"} options={dataSlot} onChange={(e) => setSelectedSlotId(e)} />
+              <Selector
+                defaultSelected={selectedSlotId}
+                title={"Please select.."}
+                type={"from"}
+                options={dataSlot}
+                onChange={(e) => setSelectedSlotId(e)}
+                disable={true}
+
+              />
 
             </div>
           </div>
@@ -289,4 +325,4 @@ const AddPlant = () => {
   )
 }
 
-export default AddPlant
+export default EditPlantPage
