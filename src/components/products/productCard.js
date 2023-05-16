@@ -33,11 +33,7 @@ const ProductCard = ({ status, data, onDeletePlant }) => {
             <img src="/img/icon/icon_outdoor.svg" alt="" width={40} />
           )}
           <div>
-            {data.plant_state.name === "pending" ? (
-              <div className={styles.text_error}>Data Missing</div>
-            ) : (
               <div className={styles.sku}>{data.slot.slot_code}</div>
-            )}
           </div>
         </div>
         <div className={styles.box_image}>

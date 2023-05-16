@@ -27,9 +27,10 @@ const EditPlantPage = () => {
   const [loadding, setLoadding] = useState(false)
   const navigate = useNavigate();
   const param = useParams()
-
+  const [statusFileChange, setStatusFileChange] = useState(false)
   // Function to handle file selection
   const handleFileSelect = (event) => {
+    setStatusFileChange(true)
     const file = event.target.files[0]
     const reader = new FileReader();
     reader.onload = function (upload) {
@@ -89,8 +90,13 @@ const EditPlantPage = () => {
       plant_type_id: selectedPlantTypeId,
       slot_id: selectedSlotId,
       price: Number(price),
-      image_name: selectedFile?.file?.name,
-      image: selectedFile.base64
+      // image_name: selectedFile?.file?.name,
+      // image: selectedFile.base64
+    }
+    if(statusFileChange){
+      console.log("set file")
+      payload.image_name =selectedFile?.file?.name
+      payload.image =selectedFile.base64
     }
 
     const res = await updatePlants(machineId, param.id, payload)

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/sass/components/items/selector.module.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
-const Selector = ({ options, title, type, onChange, statusSelected, defaultSelected, disable }) => {
+const Selector = ({ options, title, type, onChange, statusSelected, defaultSelected, disable, name }) => {
+
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState({
     value: "",
@@ -12,13 +13,15 @@ const Selector = ({ options, title, type, onChange, statusSelected, defaultSelec
     onChange(item.value)
   }
   useEffect(() => {
-    if (statusSelected) {
+    if (statusSelected?.status && type === "TOGGLE" && statusSelected?.name !== name) {
+      console.log('%cMyProject%cline:4%cstatusSelected', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(95, 92, 51);padding:3px;border-radius:2px', statusSelected)
+
       onSelected({
         value: "",
         label: ""
       })
     }
-  }, [statusSelected])
+  }, [statusSelected?.status])
 
   const onSetDefaultSelected = (value) => {
     const found = options.find((item) => item)
@@ -31,7 +34,7 @@ const Selector = ({ options, title, type, onChange, statusSelected, defaultSelec
     if (defaultSelected) {
       onSetDefaultSelected(onSetDefaultSelected)
     }
-  }, [defaultSelected])
+  }, [])
 
 
   return (

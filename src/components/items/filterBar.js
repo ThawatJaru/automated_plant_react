@@ -8,29 +8,40 @@ import { GrClose } from 'react-icons/gr'
 const FilterBar = ({ title, handleChange }) => {
   const [filterSelected, setFilterSelected] = useState({
     name: "",
-    price: "",
-    arrival: "",
   })
-  const [statusSelected, setStatusSelected] = useState(false)
-  const { name, price, arrival } = filterSelected
+  console.log('%cMyProject%cline:9%cfilterSelected', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(17, 63, 61);padding:3px;border-radius:2px', filterSelected)
+  const [statusSelected, setStatusSelected] = useState({
+    status: false,
+    name: "",
+    
+  })
+  const { name } = filterSelected
 
   useEffect(() => {
-    if (name || price || arrival) {
-      setStatusSelected(false)
+    if (name) {
+      setStatusSelected({
+        ...statusSelected,
+        status: false
+      })
     }
-  }, [statusSelected, filterSelected, name, price, arrival])
+  }, [filterSelected, name])
 
-
+  
   const onClear = () => {
-    setStatusSelected(true)
+    setStatusSelected({
+      name: null,
+      status: true
+    })
     setFilterSelected({
       name: "",
-      price: "",
-      arrival: "",
     })
   }
 
   const onChangeFilter = (sortBy, value) => {
+    setStatusSelected({
+      name: sortBy,
+      status: true
+    })
     setFilterSelected({
       ...filterSelected,
       name: value
@@ -54,6 +65,8 @@ const FilterBar = ({ title, handleChange }) => {
             onChange={(e) => onChangeFilter("name", e)}
             statusSelected={statusSelected}
             disable={false}
+            name={"name"}
+            type={"TOGGLE"}
           />
         </div>
         <div>
@@ -62,8 +75,9 @@ const FilterBar = ({ title, handleChange }) => {
             title={"Price"}
             onChange={(e) => onChangeFilter("price", e)}
             disable={false}
-
             statusSelected={statusSelected}
+            name={"price"}
+            type={"TOGGLE"}
           />
         </div>
         <div>
@@ -72,15 +86,16 @@ const FilterBar = ({ title, handleChange }) => {
             title={"Date Arrival"}
             onChange={(e) => onChangeFilter("date", e)}
             disable={false}
-
             statusSelected={statusSelected}
+            name={"date"}
+            type={"TOGGLE"}
           />
         </div>
-        {name || price || arrival ? (
+        {statusSelected.name && !statusSelected.status && (
           <div onClick={() => onClear()}>
             <GrClose size={25} />
           </div>
-        ) : ""}
+        )}
       </div>
     </div>
   )
