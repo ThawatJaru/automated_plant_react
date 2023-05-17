@@ -37,7 +37,7 @@ const ProductCard = ({ status, data, onDeletePlant }) => {
           </div>
         </div>
         <div className={styles.box_image}>
-          <img src={`${process.env.REACT_APP_API}${data.image}`} alt="" width={180} />
+          <img src={`${data.image}`} alt="" width={180} height={180} />
           <div className={styles.icon_delete} onClick={() => onDeletePlant(data.id)}>
             <img src="/img/icon/icon_delete.svg" alt="" width={20} />
           </div>

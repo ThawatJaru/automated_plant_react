@@ -4,7 +4,7 @@ import styles from '../../styles//sass/pages/addPlant.module.scss'
 import Selector from '../../components/items/selector'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../../appState/store'
-import {getAllPlantType, getPlantType } from '../../services/api/plantType'
+import { getAllPlantType, getPlantType } from '../../services/api/plantType'
 import { getAllSlot } from '../../services/api/slot'
 import { getPlants, updatePlants } from '../../services/api/plants'
 const EditPlantPage = () => {
@@ -93,10 +93,10 @@ const EditPlantPage = () => {
       // image_name: selectedFile?.file?.name,
       // image: selectedFile.base64
     }
-    if(statusFileChange){
+    if (statusFileChange) {
       console.log("set file")
-      payload.image_name =selectedFile?.file?.name
-      payload.image =selectedFile.base64
+      payload.image_name = selectedFile?.file?.name
+      payload.image = selectedFile.base64
     }
 
     const res = await updatePlants(machineId, param.id, payload)
@@ -165,7 +165,7 @@ const EditPlantPage = () => {
         </div>
       </Link>
       <div style={{ marginTop: "20px" }}>
-        <h2>Insert plant to Slot</h2>
+        <h2>Edit this plant</h2>
       </div>
       {/* from */}
       <form action="">
@@ -183,7 +183,7 @@ const EditPlantPage = () => {
               {selectedFile.file || selectedFile.imageUrl ? (
                 <div className={styles.box_input_img}>
                   <img
-                    src={selectedFile.imageUrl ? `${process.env.REACT_APP_API}${selectedFile.imageUrl}` : URL.createObjectURL(selectedFile.file)}
+                    src={selectedFile.imageUrl ? `${selectedFile.imageUrl}` : URL.createObjectURL(selectedFile.file)}
                     alt="Selected"
                     width="230px"
                   />
@@ -213,7 +213,7 @@ const EditPlantPage = () => {
             <div className={styles.flex_col} style={{ marginTop: "30px" }}>
               <div className='asterisk'>Price</div>
               <div className={styles.flex}>
-                <input type="text"
+                <input
                   placeholder='price'
                   style={{
                     border: '3px solid #B253ED',
@@ -221,6 +221,7 @@ const EditPlantPage = () => {
                     padding: '15px',
                     width: "70px"
                   }}
+                  type="number"
                   onChange={(e) => setPrice(e.target.value)}
                   value={price}
                 />
