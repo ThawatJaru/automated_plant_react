@@ -33,7 +33,7 @@ function App() {
                 <Route path='/edit-location/:id' element={<EditLocation />} />
                 <Route path='/home-admin' element={<HomeAdmin />} />
                 <Route path='/view-plant-type' element={<ViewPlantType />} />
-                <Route path='/plant/:id' element={<PlantDetailPage />} />
+                <Route path='/plant-state/:id' element={<PlantDetailPage />} />
                 <Route path='/insert-plant-slot' element={<AddPlant />} />
                 <Route path='/edit-plant-type/:id' element={<EditPlantType />} />
                 <Route path='/edit-plant/:id' element={<EditPlantPage />} />
