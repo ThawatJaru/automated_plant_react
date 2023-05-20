@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import styles from '../../styles/sass/components/items/selector.module.scss'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 const Selector = ({ options, title, type, onChange, statusSelected, defaultSelected, disable, name }) => {
-  console.log('%cMyProject%cline:4%cdefaultSelected', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(131, 175, 155);padding:3px;border-radius:2px', defaultSelected)
 
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState({
@@ -23,7 +22,7 @@ const Selector = ({ options, title, type, onChange, statusSelected, defaultSelec
   }, [statusSelected?.status])
 
   const onSetDefaultSelected = (value) => {
-    const found = options.find((item) => item)
+    const found = options.find((item) => item.value === value)
     if (found) {
       setSelected(found)
     }

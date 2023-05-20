@@ -33,7 +33,7 @@ const ProductCard = ({ status, data, onDeletePlant }) => {
             <img src="/img/icon/icon_outdoor.svg" alt="" width={40} />
           )}
           <div>
-              <div className={styles.sku}>{data.slot.slot_code}</div>
+            <div className={styles.sku}>{data.slot.slot_code}</div>
           </div>
         </div>
         <div className={styles.box_image}>
@@ -56,7 +56,7 @@ const ProductCard = ({ status, data, onDeletePlant }) => {
               <button className={styles.but_edit} onClick={() => navigate(`/edit-plant/${data.id}`)}>Edit</button>
             </div>
             <div>
-              <button className={styles.but_black}>Manage</button>
+              <button className={styles.but_black} onClick={() => navigate(`/plant/${data.id}`)}>Manage</button>
             </div>
           </div>
         </div>
