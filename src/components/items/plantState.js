@@ -45,15 +45,15 @@ const PlantState = ({ data }) => {
             <ul>
               {onMapNewPlantsState.map((item, key) => (
                 <React.Fragment key={key}>
-                  {item.name === "sold" || item.name === "reserved" ? (
+                  {item.name === "sold" || item.name === "reserved" || item.id === data.id ? (
                     <>
                       <li className={styles.checkbox_list_item}
                         onClick={() => setChecked(item.id)}
                         style={{
-                          color: item.status || item.name === 'sold' || item.name === "reserved" ? 'black' : ""
+                          color: item.status || item.name === 'sold' || item.name === "reserved" || item.id === data.id? 'black' : ""
                         }}
                       >
-                        {checked === item.id ? (
+                        {checked === item.id || (item.id === data.id && !checked) ? (
                           <RiCheckboxBlankCircleFill size={30} color='#9B7DBF' />
                         ) : (
                           <MdRadioButtonUnchecked size={30} />
