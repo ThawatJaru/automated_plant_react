@@ -67,7 +67,7 @@ const HomeAdmin = () => {
                     <h1 className="plant_manager_home_admin" style={{ fontWeight: "bold" }}>
                         Plant Manager
                     </h1>
-                    <div>
+                    <div onClick={() => navigate('/')}>
                         <img src="/img/plant_manager_logo.svg" alt="" width="45" height="64" />
                     </div>
                 </div>
