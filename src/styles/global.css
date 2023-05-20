@@ -49,6 +49,9 @@ button {
   background-color: darkgrey;
 }
 
+.text_green {
+  color: rgb(0, 212, 7);
+}
 .text_red {
   color: #e12b2b;
 }

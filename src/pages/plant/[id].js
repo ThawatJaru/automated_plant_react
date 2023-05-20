@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import styles from '../../styles/sass/pages/plantDetail.module.scss'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { getPlants } from '../../services/api/plants'
+import { getPlants, plantCloseDoor, plantOpenDoor, webhookToggleDoor } from '../../services/api/plants'
 import { AppContext } from '../../appState/store'
 import PlantState from '../../components/items/plantState'
 
@@ -11,12 +11,36 @@ const PlantDetailPage = () => {
   const navigate = useNavigate();
 
   const [dataPlant, setDataPlant] = useState()
-
+  const [doorStatus, setDoorStatus] = useState(true)
 
   const onGetDataPlant = async () => {
     const { data } = await getPlants(machineId, param.id)
     if (data) {
       setDataPlant(data)
+    }
+  }
+
+  const onToggleDoor = async (open, id, status_code) => {
+    setDoorStatus(open)
+    if (open) {
+      const res = await plantOpenDoor(id)
+      console.log('%cMyProject%cline:26%cres', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(130, 57, 53);padding:3px;border-radius:2px', res)
+      if (res) {
+        const payload = {
+          slot_code: status_code,
+          status: "opened"
+        }
+        webhookToggleDoor(param.id, payload)
+      }
+    } else {
+      const res = await plantCloseDoor(id)
+      if (res) {
+        const payload = {
+          slot_code: status_code,
+          status: "closed"
+        }
+        webhookToggleDoor(param.id, payload)
+      }
     }
   }
 
@@ -92,16 +116,24 @@ const PlantDetailPage = () => {
                     }}
                   >
                     <div>Door Status</div>
-                    <div className={'text_red italic'} >Closed</div>
+                    {doorStatus ? (
+                      <div className={'text_green italic'} >Open</div>
+                    ) : (
+                      <div className={'text_red italic'} >Closed</div>
+                    )}
                   </div>
                   <div style={{ textAlign: "right" }}>
-                    <button className={styles.but_unlock}>Unlock</button>
+                    {doorStatus ? (
+                      <button className={styles.but_unlock} onClick={() => onToggleDoor(false, param.id, dataPlant.slot.slot_code)}>Lock</button>
+                    ):(
+                      <button className={styles.but_unlock} onClick={() => onToggleDoor(true, param.id, dataPlant.slot.slot_code)}>Unlock</button>
+                    )}
                   </div>
                 </div>
               </div>
               {/* grid2 */}
               <div style={{ position: "relative" }}>
-                <PlantState  data = {dataPlant.plant_state}/>
+                <PlantState data={dataPlant.plant_state} />
               </div>
               {/* grid3 */}
               <div>

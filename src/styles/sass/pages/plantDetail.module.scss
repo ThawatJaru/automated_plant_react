@@ -29,6 +29,7 @@
 .but_ready {
   width: 178px;
   height: 48px;
+  font-size: 25px;
   background: #FFFFFF;
   border: 1px solid $color-purple-fade;
   border-radius: 30px;
@@ -38,6 +39,8 @@
   align-items: center;
   font-weight: bold;
   margin: 0 auto;
+  text-transform: capitalize;
+  font-style: italic;
 }
 
 .but_apply {
