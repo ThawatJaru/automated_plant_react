@@ -56,7 +56,7 @@ const ProductCard = ({ status, data, onDeletePlant }) => {
               <button className={styles.but_edit} onClick={() => navigate(`/edit-plant/${data.id}`)}>Edit</button>
             </div>
             <div>
-              <button className={styles.but_black} onClick={() => navigate(`/plant/${data.id}`)}>Manage</button>
+              <button className={styles.but_black} onClick={() => navigate(`/plant-state/${data.id}`)}>Manage</button>
             </div>
           </div>
         </div>
