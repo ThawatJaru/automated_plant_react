@@ -4,10 +4,13 @@ import { mockDataPlantState } from '../../constants/mockDataPlantState'
 import { RiCheckboxBlankCircleFill } from 'react-icons/ri'
 import { MdRadioButtonUnchecked } from 'react-icons/md'
 import { changePlantState } from '../../services/api/plants'
+import { useParams } from 'react-router-dom'
 
 const PlantState = ({ data }) => {
   const [checked, setChecked] = useState("")
   const [loading, setLoading] = useState(false)
+  const param = useParams()
+  console.log('%cMyProject%cline:12%cparam', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(17, 63, 61);padding:3px;border-radius:2px', param)
   const onMapNewPlantsState = mockDataPlantState.map((item) => (
     {
       ...item,
@@ -15,13 +18,13 @@ const PlantState = ({ data }) => {
     }
   ))
 
-  const onApply = async (id) => {
+  const onApply = async (p_id,id) => {
     setLoading(true)
     setTimeout(async () => {
       const data = {
         plant_state_id: id
       }
-      await changePlantState(id, data)
+      await changePlantState(p_id, data)
       setLoading(false)
     }, 1000);
   }
@@ -107,7 +110,7 @@ const PlantState = ({ data }) => {
           <div>
             <button
               className={styles.but_apply}
-              onClick={() => onApply(checked)}
+              onClick={() => onApply(param.id,checked)}
               disabled={checked ? false : true}
             >
               Apply
