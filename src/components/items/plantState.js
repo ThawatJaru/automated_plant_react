@@ -7,18 +7,23 @@ import { changePlantState } from '../../services/api/plants'
 import { useParams } from 'react-router-dom'
 
 const PlantState = ({ data }) => {
-  const [checked, setChecked] = useState("")
+  const [checked, setChecked] = useState({
+    description: "",
+    id: "",
+    name: "",
+    status: null
+  })
+  console.log('%cMyProject%cline:10%cchecked', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(95, 92, 51);padding:3px;border-radius:2px', checked)
   const [loading, setLoading] = useState(false)
   const param = useParams()
-  console.log('%cMyProject%cline:12%cparam', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(17, 63, 61);padding:3px;border-radius:2px', param)
   const onMapNewPlantsState = mockDataPlantState.map((item) => (
     {
       ...item,
-      status: (item.id === checked) || (item.id === data.id && !checked) ? true : false
+      status: (item.id === checked.id) || (item.id === data.id && !checked.id) ? true : false
     }
   ))
 
-  const onApply = async (p_id,id) => {
+  const onApply = async (p_id, id) => {
     setLoading(true)
     setTimeout(async () => {
       const data = {
@@ -33,16 +38,16 @@ const PlantState = ({ data }) => {
       {loading ? (
         <div
           style={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            minHeight:"300px"
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "300px"
           }}
         >Loading...</div>
       ) : (
         <>
           <div className={styles.but_ready}>
-            <div>{data.name}</div>
+            <div>{checked.name ? checked.name: data.name}</div>
           </div>
           <div>
             <ul>
@@ -51,12 +56,12 @@ const PlantState = ({ data }) => {
                   {item.name === "sold" || item.name === "reserved" || item.id === data.id ? (
                     <>
                       <li className={styles.checkbox_list_item}
-                        onClick={() => setChecked(item.id)}
+                        onClick={() => setChecked(item)}
                         style={{
-                          color: item.status || item.name === 'sold' || item.name === "reserved" || item.id === data.id? 'black' : ""
+                          color: item.status || item.name === 'sold' || item.name === "reserved" || item.id === data.id ? 'black' : ""
                         }}
                       >
-                        {checked === item.id || (item.id === data.id && !checked) ? (
+                        {checked.id === item.id || (item.id === data.id && !checked.id) ? (
                           <RiCheckboxBlankCircleFill size={30} color='#9B7DBF' />
                         ) : (
                           <MdRadioButtonUnchecked size={30} />
@@ -110,7 +115,7 @@ const PlantState = ({ data }) => {
           <div>
             <button
               className={styles.but_apply}
-              onClick={() => onApply(param.id,checked)}
+              onClick={() => onApply(param.id, checked.id)}
               disabled={checked ? false : true}
             >
               Apply

@@ -11,7 +11,7 @@ const PlantDetailPage = () => {
   const navigate = useNavigate();
 
   const [dataPlant, setDataPlant] = useState()
-  const [doorStatus, setDoorStatus] = useState(true)
+  const [doorStatus, setDoorStatus] = useState(false)
 
   const onGetDataPlant = async () => {
     const { data } = await getPlants(machineId, param.id)
@@ -24,13 +24,15 @@ const PlantDetailPage = () => {
     setDoorStatus(open)
     if (open) {
       const res = await plantOpenDoor(id)
-      console.log('%cMyProject%cline:26%cres', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(130, 57, 53);padding:3px;border-radius:2px', res)
       if (res) {
         const payload = {
           slot_code: status_code,
           status: "opened"
         }
-        webhookToggleDoor(param.id, payload)
+        const resDoor = await webhookToggleDoor(param.id, payload)
+        if (resDoor) {
+          setDoorStatus(open)
+        }
       }
     } else {
       const res = await plantCloseDoor(id)
@@ -125,7 +127,7 @@ const PlantDetailPage = () => {
                   <div style={{ textAlign: "right" }}>
                     {doorStatus ? (
                       <button className={styles.but_unlock} onClick={() => onToggleDoor(false, param.id, dataPlant.slot.slot_code)}>Lock</button>
-                    ):(
+                    ) : (
                       <button className={styles.but_unlock} onClick={() => onToggleDoor(true, param.id, dataPlant.slot.slot_code)}>Unlock</button>
                     )}
                   </div>
