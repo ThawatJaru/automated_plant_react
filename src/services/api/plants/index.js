@@ -51,7 +51,6 @@ export const plantOpenDoor = async (p_id) => {
   }
 }
 export const plantCloseDoor = async (p_id) => {
-  console.log('%cMyProject%cline:53%cp_id', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(254, 67, 101);padding:3px;border-radius:2px', p_id)
   try {
     const res = await axiosInstance.patch(`/api/signal/request_close/${p_id}`)
     return res
@@ -60,8 +59,6 @@ export const plantCloseDoor = async (p_id) => {
   }
 }
 export const webhookToggleDoor = async (p_id, data) => {
-  console.log('%cMyProject%cline:62%cp_id', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(178, 190, 126);padding:3px;border-radius:2px', p_id)
-  console.log('%cMyProject%cline:62%cdata', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(3, 22, 52);padding:3px;border-radius:2px', data)
   try {
     const res = await axios.post(`/webhook/door_status/${p_id}`, data)
     return res
