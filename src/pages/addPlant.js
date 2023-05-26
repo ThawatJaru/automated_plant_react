@@ -31,7 +31,7 @@ const AddPlant = () => {
     const reader = new FileReader();
     reader.onload = function (upload) {
       const base64Image = upload.target.result.split(",")[1];
-      // ทำสิ่งที่ต้องการกับภาพในรูปแบบ Base64
+      
       setSelectedFile({
         file: event.target.files[0],
         base64: base64Image.toString()
