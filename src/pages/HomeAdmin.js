@@ -24,9 +24,10 @@ const HomeAdmin = () => {
     const getData = async () => {
         setLoading(true)
         const res = await getAllPlants(payload)
+        const filter = res.data.filter((item) => item.location.id === machineId)
         setTimeout(() => {
-            if (res) {
-                setDataProductList(res.data)
+            if (filter) {
+                setDataProductList(filter)
                 setLoading(false)
             }
         }, 500);
