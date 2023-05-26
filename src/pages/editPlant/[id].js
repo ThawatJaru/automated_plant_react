@@ -106,8 +106,8 @@ const EditPlantPage = () => {
     }
   }
 
-  const onGetDataPlant = async () => {
-    const { data } = await getPlants(machineId, param.id)
+  const onGetDataPlant = async (id) => {
+    const { data } = await getPlants(machineId, id)
     if (data) {
       setSelectedSlotId(data.slot.id)
       setPrice(data.price)
@@ -120,8 +120,6 @@ const EditPlantPage = () => {
       })
       setSelectedPlantTypeId(data.plant_type.id)
     }
-    onGetPlantType()
-
   }
   useEffect(() => {
     if (!machineId) {
@@ -135,8 +133,8 @@ const EditPlantPage = () => {
       })
     }
 
-    if (param) {
-      onGetDataPlant()
+    if (param.id) {
+      onGetDataPlant(param.id)
     }
     onGetDataPlantType()
     onGetDataSlot()
