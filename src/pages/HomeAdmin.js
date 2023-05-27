@@ -107,7 +107,7 @@ const HomeAdmin = () => {
                         <img src="/img/icon/icon_search.svg" alt="" width="25" height="25" />
                     </div>
                     <div className="pos_plant_search">
-                        <input type="text" placeholder="Find your location" className="plant_search" onChange={(e) => setPayload({
+                        <input type="text" placeholder="Find your plant" className="plant_search" onChange={(e) => setPayload({
                             ...payload,
                             search: e.target.value
                         })} />
