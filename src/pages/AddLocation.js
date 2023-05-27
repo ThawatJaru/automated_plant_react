@@ -18,14 +18,21 @@ const AddLocation = () => {
     })
     const [loading, setLoading] = useState(false)
     const onCreate = async (data) => {
-        setLoading(true)
         if (!dataForm.name || !dataForm.description || !dataForm.capacity) {
             setError({
                 status: true,
-                massage: "The from is incomplete"
+                massage: "The form is incomplete"
             })
             return
         }
+        if (dataForm.capacity <= 0 || dataForm.capacity > 99) {
+            setError({
+                status: true,
+                massage: "The capacity must be from 1 - 99"
+            })
+            return
+        }
+        setLoading(true)
         await createMachine("00000000-0000-4000-8000-000000000000", data)
         setLoading(false)
         navigate("/machine-location")
@@ -66,7 +73,7 @@ const AddLocation = () => {
                 <div
                     style={{
                         color: "red",
-                        width: "200px",
+                        width: "300px",
                         textAlign: "right",
                         position: "absolute",
                         bottom: "60px",

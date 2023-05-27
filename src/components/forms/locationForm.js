@@ -27,6 +27,8 @@ const LocationForm = ({ onChangeDataForm, mode, dataForm }) => {
                 placeholder="3"
                 className="cap_add_add_location"
                 name="capacity"
+                min={"1"}
+                max={"100"}
                 value={dataForm.capacity}
                 disabled={mode === "EDIT" && true}
               />

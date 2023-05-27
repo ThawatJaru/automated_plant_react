@@ -112,7 +112,7 @@ const AddPlantType = () => {
       setLoading(false)
       setErrorForm({
         status: true,
-        message: "The From is incomplete"
+        message: "The Form is incomplete"
       })
       return
     }
