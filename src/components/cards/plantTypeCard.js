@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../../styles/sass/components/cards/plantTypeCard.module.scss'
 import { useNavigate } from 'react-router-dom'
 const PlantTypeCard = ({ data, onDelete }) => {
+  console.log('%cMyProject%cline:4%cdata', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(179, 214, 110);padding:3px;border-radius:2px', data)
   const route = useNavigate()
 
   return (
@@ -30,7 +31,7 @@ const PlantTypeCard = ({ data, onDelete }) => {
             <strong>{'>= 6 hours'}</strong>
           </div>
         </div>
-        <div>Watering: Every 6 Days </div>
+        <div>Watering: Every {data.watering_period} Days </div>
       </div>
       <div
         style={{
