@@ -72,6 +72,7 @@ const EditPlantPage = () => {
 
   const onGetPlantType = async () => {
     const res = await getPlantType(selectedPlantTypeId)
+    console.log('%cMyProject%cline:74%cres', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(3, 38, 58);padding:3px;border-radius:2px', res)
     if (res) {
       setSinglePlantType(res.data)
     }
@@ -109,7 +110,10 @@ const EditPlantPage = () => {
   const onGetDataPlant = async (id) => {
     const { data } = await getPlants(machineId, id)
     if (data) {
-      setSelectedSlotId(data.slot.id)
+      setSelectedSlotId({
+        value:data.slot.id,
+        label:data.slot.slot_code,
+      })
       setPrice(data.price)
       setSelectedFile({
         ...selectedFile,
@@ -118,7 +122,7 @@ const EditPlantPage = () => {
         },
         imageUrl: data.image
       })
-      setSelectedPlantTypeId(data.plant_type.id)
+      setSelectedPlantTypeId({id:data.plant_type.id})
     }
   }
   useEffect(() => {
@@ -200,7 +204,7 @@ const EditPlantPage = () => {
             <div className={`${styles.flex_col}`}>
               <div className='asterisk'>Select plant’s type</div>
               <Selector
-                defaultSelected={selectedPlantTypeId}
+                defaultSelected={selectedPlantTypeId?.id}
                 title={"Please Select..."}
                 type={"from"}
                 options={dataPlantType}
@@ -233,7 +237,7 @@ const EditPlantPage = () => {
 
               <div className='asterisk'>Select the slot</div>
               <Selector
-                defaultSelected={selectedSlotId}
+                defaultSelected={selectedSlotId} 
                 title={"Please select.."}
                 type={"from"}
                 options={dataSlot}
